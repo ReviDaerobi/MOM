@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class,'index']);
+Route::post('/delete-data/{id}', [DashboardController::class,'delete']);

@@ -1,6 +1,6 @@
 @extends('base.app')
 
-@section('konten')
+@section('login')
     
     <div class="flex flex-col md:flex-row h-screen">
         <div class="bg-cover bg-center h-full w-full md:w-1/2" style="background-image: url('./src/img/wp_login.jpg')">
