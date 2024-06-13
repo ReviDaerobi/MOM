@@ -17,7 +17,7 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<button class="bg-red-100 bottom-4 show-alert-delete-box" data-id="{{ $id }}">Delete</button> <button class="button-edit bg-gray-600 bottom-4"  data-id="{{ $id }}">edit</button>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
