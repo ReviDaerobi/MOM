@@ -21,3 +21,5 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class,'index']);
 Route::post('/delete-data/{id}', [DashboardController::class,'delete']);
+Route::post('/updateData/{id}', [DashboardController::class, 'updateData']);
+Route::post('/addData', [DashboardController::class, 'addData']);

@@ -12,7 +12,54 @@
 
 @endsection
 
+{{-- Modal --}}
 
+<div x-data="{ open: false }" @keydown.escape.window="open = false">
+    <button @click="open = true" id="addButton" class="btn btn-primary">Tambah Data</button>
+    <div x-show="open" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Tambah Data
+                            </h3>
+                            <div class="mt-2">
+                                <form id="addForm">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label>Nama:</label>
+                                        <input type="text" class="form-control" id="addNama" name="nama">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Alamat:</label>
+                                        <input type="text" class="form-control" id="addAlamat" name="alamat">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telepon:</label>
+                                        <input type="text" class="form-control" id="addTelepon" name="telepon">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{-- End Modal --}}
 
 
 @section('konten')
@@ -57,6 +104,33 @@
 
 
 <script  type="text/javascript">
+$(document).ready(function() {
+    $(document).on('click', '#addButton', function(){
+    document.querySelector('[x-data]').__x.$data.open = true;
+});
+
+$('#addForm').on('submit', function(e){
+    e.preventDefault();
+    var nama = $('#addNama').val();
+    var alamat = $('#addAlamat').val();
+    var telepon = $('#addTelepon').val();
+    $.ajax({
+        type: 'POST',
+        url: '/addData',
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+            'nama': nama,
+            'alamat': alamat,
+            'telepon': telepon
+        },
+        success: function(response){
+            alert('Data Added');
+            location.reload();
+        }
+    });
+});
+
+
     $(function () {
 
 var table = $('#example').DataTable({
@@ -64,12 +138,44 @@ var table = $('#example').DataTable({
     serverSide: true,
     ajax: "/dashboard", // Ubah route ke route yang sesuai dengan data mahasiswa
     columns: [
-        {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+        
         {data: 'nama', name: 'nama'},
         {data: 'alamat', name: 'alamat'},
         {data: 'telepon', name: 'telepon'},
         {data: 'action', name: 'action', orderable: false, searchable: false},
-    ]
+    ],
+    initComplete: function () {
+        var button = '<button class="btn btn-primary" id="addButton">Tambah Data</button>';
+        $('.dt-search').prepend(button);
+    }
+});
+
+$(document).on('click', '.edit', function(){
+    var tr = $(this).closest('tr');
+    var row = table.row(tr);
+    var data = row.data();
+    tr.html('<td><input type="text" id="editNama" value="' + data.nama + '"></td><td><input type="text" id="editAlamat" value="' + data.alamat + '"></td><td><input type="text" id="editTelepon" value="' + data.telepon + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
+});
+
+$(document).on('click', '.save', function(){
+    var id = $(this).data('id');
+    var nama = $('#editNama').val();
+    var alamat = $('#editAlamat').val();
+    var telepon = $('#editTelepon').val();
+    $.ajax({
+        type: 'POST',
+        url: '/updateData/'+id,
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+            'nama': nama,
+            'alamat': alamat,
+            'telepon': telepon
+        },
+        success: function(response){
+            alert('Data Updated');
+            location.reload();
+        }
+    });
 });
 
 });
@@ -78,6 +184,8 @@ var table = $('#example').DataTable({
 
 
     $(document).ready(function() {
+
+     
         
     $(document).on('click', '.show-alert-delete-box', function(event){
         var id = $(this).data('id');
@@ -99,6 +207,7 @@ var table = $('#example').DataTable({
             }
         });
     });
+});
 });
 
 </script>

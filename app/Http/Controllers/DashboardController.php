@@ -17,7 +17,7 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="bg-red-100 bottom-4 show-alert-delete-box" data-id="{{ $id }}">Delete</button> <button class="button-edit bg-gray-600 bottom-4"  data-id="{{ $id }}">edit</button>';
+                    $actionBtn = '<button class="bg-red-100 bottom-4 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit btn btn-primary btn-sm" data-id="'.$row->id.'">Edit</button>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -34,4 +34,23 @@ class DashboardController extends Controller
         return redirect('/dashboard');
     }
 
+    public function addData(Request $request)
+{
+    $data = new data_pegawai;
+    $data->nama = $request->nama;
+    $data->alamat = $request->alamat;
+    $data->telepon = $request->telepon;
+    $data->save();
+    return response()->json(['success'=>'Data added successfully.']);
+}
+
+    public function updateData(Request $request, $id)
+{
+    $data = data_pegawai::find($id);
+    $data->nama = $request->nama;
+    $data->alamat = $request->alamat;
+    $data->telepon = $request->telepon;
+    $data->save();
+    return response()->json(['success'=>'Data updated successfully.']);
+}
 }
