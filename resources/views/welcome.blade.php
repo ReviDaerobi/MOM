@@ -24,7 +24,7 @@
                     <p class="text-gray-500 mt-2">Wujudkan Mimpi Dan Permudah Dengan MOM</p>
                 </div>
             </div>
-            <form class="w-full max-w-md" action="/dashboard">
+            <form class="w-full max-w-md" action="/list-user">
                 <div class="grid grid-cols-1 gap-4">
                     <div class="mb-4">
                         <label for="email" class="block text-gray-700 font-bold mb-2">Username</label>

@@ -14,4 +14,6 @@ class data_pegawai extends Model
         'alamat',
         'telepon',
     ];
+
+    public $timestamps = false;
 }

@@ -15,7 +15,7 @@
 {{-- Modal --}}
 
 <div x-data="{ open: false }" @keydown.escape.window="open = false">
-    <button @click="open = true" id="addButton" class="btn btn-primary">Tambah Data</button>
+   
     <div x-show="open" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
@@ -63,35 +63,8 @@
 
 
 @section('konten')
-    <div class="mt-4">
-      <div class="bg-white rounded-lg shadow-md ml-10 mr-10 p-4">
-
-        <form id="deleteForm" action="" method="POST" style="display: none;">
-            @csrf
-        </form>
-
-<table id="example" class=" display cell-border" style="width:100%">
-    <thead class="" style="width: 100%">
-        <tr>
-            <th>Name</th>
-            <th>Alamat</th>
-            <th>Telepon</th>
-            <th>Action</th>
-        </tr>
-        
-    </thead>
-    <tbody>
-   
-    </tbody>
-</table>
-
-</div>
-
-</div>
+    @yield('table')
 @endsection
-
-   
-
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -102,113 +75,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
+@stack('scripts-datatable')
 
-<script  type="text/javascript">
-$(document).ready(function() {
-    $(document).on('click', '#addButton', function(){
-    document.querySelector('[x-data]').__x.$data.open = true;
-});
-
-$('#addForm').on('submit', function(e){
-    e.preventDefault();
-    var nama = $('#addNama').val();
-    var alamat = $('#addAlamat').val();
-    var telepon = $('#addTelepon').val();
-    $.ajax({
-        type: 'POST',
-        url: '/addData',
-        data: {
-            '_token': $('meta[name="csrf-token"]').attr('content'),
-            'nama': nama,
-            'alamat': alamat,
-            'telepon': telepon
-        },
-        success: function(response){
-            alert('Data Added');
-            location.reload();
-        }
-    });
-});
-
-
-    $(function () {
-
-var table = $('#example').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: "/dashboard", // Ubah route ke route yang sesuai dengan data mahasiswa
-    columns: [
-        
-        {data: 'nama', name: 'nama'},
-        {data: 'alamat', name: 'alamat'},
-        {data: 'telepon', name: 'telepon'},
-        {data: 'action', name: 'action', orderable: false, searchable: false},
-    ],
-    initComplete: function () {
-        var button = '<button class="btn btn-primary" id="addButton">Tambah Data</button>';
-        $('.dt-search').prepend(button);
-    }
-});
-
-$(document).on('click', '.edit', function(){
-    var tr = $(this).closest('tr');
-    var row = table.row(tr);
-    var data = row.data();
-    tr.html('<td><input type="text" id="editNama" value="' + data.nama + '"></td><td><input type="text" id="editAlamat" value="' + data.alamat + '"></td><td><input type="text" id="editTelepon" value="' + data.telepon + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
-});
-
-$(document).on('click', '.save', function(){
-    var id = $(this).data('id');
-    var nama = $('#editNama').val();
-    var alamat = $('#editAlamat').val();
-    var telepon = $('#editTelepon').val();
-    $.ajax({
-        type: 'POST',
-        url: '/updateData/'+id,
-        data: {
-            '_token': $('meta[name="csrf-token"]').attr('content'),
-            'nama': nama,
-            'alamat': alamat,
-            'telepon': telepon
-        },
-        success: function(response){
-            alert('Data Updated');
-            location.reload();
-        }
-    });
-});
-
-});
-
-
-
-
-    $(document).ready(function() {
-
-     
-        
-    $(document).on('click', '.show-alert-delete-box', function(event){
-        var id = $(this).data('id');
-
-        event.preventDefault();
-        swal({
-            title: "Are you sure you want to delete this record?",
-            text: "If you delete this, it will be gone forever.",
-            icon: "warning",
-            type: "warning",
-            buttons: ["Cancel","Yes!"],
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((willDelete) => {
-            if (willDelete) {
-                $('#deleteForm').attr('action', '/delete-data/' + id);
-                $('#deleteForm').submit();
-            }
-        });
-    });
-});
-});
-
-</script>
 @endpush
