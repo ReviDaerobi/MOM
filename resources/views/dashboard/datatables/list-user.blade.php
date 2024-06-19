@@ -1,9 +1,10 @@
 @extends('dashboard.index')
 
 @section('table')
+<div class="card mt-12">
 
-<div class="mt-4">
-    <div class="bg-white rounded-lg shadow-md ml-10 mr-10 p-4">
+    <div class="mt-4">
+        <div class="bg-white rounded-lg shadow-md ml-10 mr-10 p-4">
 
         <form id="deleteForm" action="" method="POST" style="display: none;">
             @csrf
@@ -26,8 +27,9 @@
                         
                         </div>
                         
-                        </div>    
+                    </div>    
 
+                </div>
 @endsection
 @push('scripts-datatable')
 <script  type="text/javascript">

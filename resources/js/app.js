@@ -1,3 +1,5 @@
+import 'tailwindcss-animate';
+
 import Swiper from 'swiper/bundle';
 
 // Script untuk interaksi sidebar (jika diperlukan)

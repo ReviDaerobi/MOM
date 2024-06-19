@@ -1,82 +1,146 @@
-@extends('base.app')
+<div id="sideBar" class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 md:-ml-64 md:fixed md:top-0 md:z-30 md:h-screen md:shadow-xl animated faster transition-opacity duration-500 ease-in-out transform -translate-x-full opacity-0">
+    <!-- sidebar content -->
+    <div class="flex flex-col">
+      <!-- sidebar toggle -->
+      <div class="text-right hidden md:block mb-4">
+        <button id="sideBarHideBtn">
+          <i class="fad fa-times-circle"></i>
+        </button>
+      </div>
+      <!-- end sidebar toggle -->
+      <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">homes</p>
+      <!-- link -->
+      <a href="./index.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-chart-pie text-xs mr-2"></i>                
+        Analytics dashboard
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="./index-1.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-shopping-cart text-xs mr-2"></i>
+        ecommerce dashboard
+      </a>
+      <!-- end link -->
+      <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">apps</p>
+      <!-- link -->
+      <a href="./email.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-envelope-open-text text-xs mr-2"></i>
+        email
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-comments text-xs mr-2"></i>
+        chat
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-shield-check text-xs mr-2"></i>
+        todo
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-calendar-edit text-xs mr-2"></i>
+        calendar
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-file-invoice-dollar text-xs mr-2"></i>
+        invoice
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-folder-open text-xs mr-2"></i>
+        file manager
+      </a>
+      <!-- end link -->   
+      <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">UI Elements</p>
+      <!-- link -->
+      <a href="./typography.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-text text-xs mr-2"></i>
+        typography
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="./alert.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-whistle text-xs mr-2"></i>
+        alerts
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="./buttons.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-cricket text-xs mr-2"></i>
+        buttons
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-box-open text-xs mr-2"></i>
+        Content
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-swatchbook text-xs mr-2"></i>
+        colors
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-atom-alt text-xs mr-2"></i>
+        icons
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-club text-xs mr-2"></i>
+        card
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-cheese-swiss text-xs mr-2"></i>
+        Widgets
+      </a>
+      <!-- end link -->
+      <!-- link -->
+      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <i class="fad fa-computer-classic text-xs mr-2"></i>
+        Components
+      </a>
+      <!-- end link -->
+    </div>
+    <!-- end sidebar content -->
+  </div>
+  <!-- end sidbar -->
+    @push('scripts')
+        <script>
+            // work with sidebar
+var btn     = document.getElementById('sliderBtn'),
+    sideBar = document.getElementById('sideBar'),
+    sideBarHideBtn = document.getElementById('sideBarHideBtn');
 
-<div class="flex" x-data="{ open: false }">
-    <button @click="open = !open" class="p-2 bg-blue-500 text-white">
-        <i :class="{ 'fa-bars': !open, 'fa-times': open }" class="fas"></i>
-    </button>
-    <div :class="{'w-64' : open, 'w-0': !open}" class="bg-gray-800 w-64 p-4 h-screen overflow-auto transition-all duration-300">
-        <div class="text-center mb-4 flex">
-            <img src="src/img/logo.png" alt="Logo" class="w-14 h-14 rounded-full">
-            <h1 class="text-white text-xl mt-2 ml-4">MNC-Client</h1>
-        </div>
-        <ul class="list-none p-0 mt-10" >
-            <li class="mb-2">
-                <a href="#" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                    <i class="fas fa-home mr-2"></i> Parameter
-                </a>
-            </li>
-            <li x-data="{ open: false }" class="mb-2" id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" >
-                <a @click="open = !open" href="#" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                    <i class="fas fa-users mr-2"></i> Master Data
-                </a>
-                <ul :class="{'block opacity-100 scale-100 transform translate-y-0': open, 'hidden opacity-0 scale-0 -translate-y-2': !open}" class="hidden ml-8 list-none p-7 bg-gray-800 transition-all duration-300 origin-top" id="dropdownHover">
-                    <li class="mb-2">
-                        <a href="/list-user" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-user-circle mr-2"></i> List User
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-materi" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-list-ul mr-2"></i> List Materi
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-holding" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-file-alt mr-2"></i> List Holding
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-agency" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-building mr-2"></i> List Agency
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-advertiser" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-user-friends mr-2"></i> List Advertiser
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-brand" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-hashtag mr-2"></i> List brand
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-flagrate" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-flag mr-2"></i> List FlagRate
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-spottype" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-map-marker-alt mr-2"></i> List Spot Type
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-channel" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-sitemap mr-2"></i> Channel
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-category" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-tags mr-2"></i> Category
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/list-settings" class="block px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md">
-                            <i class="fas fa-cog mr-2"></i> Settings
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    </div>
+  // Toggle sidebar
+btn.addEventListener('click', function() {
+    sideBar.classList.toggle('-translate-x-full');
+    sideBar.classList.toggle('opacity-0');
+    btn.classList.toggle('fa-list-ul'); // Toggle hamburger icon
+    btn.classList.toggle('fa-times-circle'); // Toggle X icon
+});
+
+// Hide sidebar with 'X' button
+sideBarHideBtn.addEventListener('click', function() {
+    sideBar.classList.add('-translate-x-full');
+    sideBar.classList.add('opacity-0');
+    btn.classList.replace('fa-times-circle', 'fa-list-ul'); // Change back to hamburger icon
+});
+
+
+// end with sidebar
+
+        </script>
+    @endpush
