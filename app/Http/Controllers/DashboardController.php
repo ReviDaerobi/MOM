@@ -36,7 +36,6 @@ class DashboardController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-
         return view('dashboard.datatables.list-user');
     }
 

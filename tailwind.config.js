@@ -6,6 +6,11 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
+    colors: {
+      baseColor: "#D8EFD3",
+      navbarColor: "#F1F8E8",
+      sidebarColor: "#F1F8E8",
+    },
     extend: {},
     screens: {
       'sm': {'max': '639px'},
