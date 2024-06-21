@@ -10,6 +10,10 @@ module.exports = {
       baseColor: "#D8EFD3",
       navbarColor: "#F1F8E8",
       sidebarColor: "#F1F8E8",
+      cardColor: "#F6F1F1",
+      white: "#ffffff",
+      gray300: "#d1d5db",
+      gray600: "#6b7280",
     },
     extend: {},
     screens: {
