@@ -38,17 +38,17 @@
     
     $('#addForm').on('submit', function(e){
         e.preventDefault();
-        var nama = $('#addNama').val();
-        var alamat = $('#addAlamat').val();
-        var telepon = $('#addTelepon').val();
+        var client_name = $('#addclient_name').val();
+        var client_address = $('#addclient_address').val();
+        var npwp = $('#addnpwp').val();
         $.ajax({
             type: 'POST',
             url: '/addData',
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'client_name': client_name,
+                'client_address': client_address,
+                'npwp': npwp
             },
             success: function(response){
                 alert('Data Added');
@@ -81,22 +81,22 @@
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         var data = row.data();
-        tr.html('<td><input type="text" id="editNama" value="' + data.nama + '"></td><td><input type="text" id="editAlamat" value="' + data.alamat + '"></td><td><input type="text" id="editTelepon" value="' + data.telepon + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
+        tr.html('<td><input type="text" id="editclient_name" value="' + data.client_name + '"></td><td><input type="text" id="editclient_address" value="' + data.client_address + '"></td><td><input type="text" id="editnpwp" value="' + data.npwp + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
     });
     
     $(document).on('click', '.save', function(){
         var id = $(this).data('id');
-        var nama = $('#editNama').val();
-        var alamat = $('#editAlamat').val();
-        var telepon = $('#editTelepon').val();
+        var client_name = $('#editclient_name').val();
+        var client_address = $('#editclient_address').val();
+        var npwp = $('#editnpwp').val();
         $.ajax({
             type: 'POST',
-            url: '/updateData/'+id,
+            url: '/updateDataAdvertiser/'+id,
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'client_name': client_name,
+                'client_address': client_address,
+                'npwp': npwp
             },
             success: function(response){
                 alert('Data Updated');
@@ -129,7 +129,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((willDelete) => {
                 if (willDelete) {
-                    $('#deleteForm').attr('action', '/delete-data/' + id);
+                    $('#deleteForm').attr('action', '/delete-dataAdvertiser/' + id);
                     $('#deleteForm').submit();
                 }
             });

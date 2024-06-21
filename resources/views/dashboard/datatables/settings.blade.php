@@ -38,17 +38,17 @@
     
     $('#addForm').on('submit', function(e){
         e.preventDefault();
-        var nama = $('#addNama').val();
-        var alamat = $('#addAlamat').val();
-        var telepon = $('#addTelepon').val();
+        var discount = $('#adddiscount').val();
+        var Mode = $('#addMode').val();
+        var createdby = $('#addcreatedby').val();
         $.ajax({
             type: 'POST',
             url: '/addData',
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'discount': discount,
+                'Mode': Mode,
+                'createdby': createdby
             },
             success: function(response){
                 alert('Data Added');
@@ -82,22 +82,22 @@
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         var data = row.data();
-        tr.html('<td><input type="text" id="editNama" value="' + data.nama + '"></td><td><input type="text" id="editAlamat" value="' + data.alamat + '"></td><td><input type="text" id="editTelepon" value="' + data.telepon + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
+        tr.html('<td><input type="text" id="editdiscount" value="' + data.discount + '"></td><td><input type="text" id="editMode" value="' + data.Mode + '"></td><td><input type="text" id="editcreatedby" value="' + data.createdby + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
     });
     
     $(document).on('click', '.save', function(){
         var id = $(this).data('id');
-        var nama = $('#editNama').val();
-        var alamat = $('#editAlamat').val();
-        var telepon = $('#editTelepon').val();
+        var discount = $('#editdiscount').val();
+        var Mode = $('#editMode').val();
+        var createdby = $('#editcreatedby').val();
         $.ajax({
             type: 'POST',
-            url: '/updateData/'+id,
+            url: '/updateDataSettings/'+id,
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'discount': discount,
+                'Mode': Mode,
+                'createdby': createdby
             },
             success: function(response){
                 alert('Data Updated');
@@ -130,7 +130,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((willDelete) => {
                 if (willDelete) {
-                    $('#deleteForm').attr('action', '/delete-data/' + id);
+                    $('#deleteForm').attr('action', '/delete-dataSettings/' + id);
                     $('#deleteForm').submit();
                 }
             });

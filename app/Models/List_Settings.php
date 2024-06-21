@@ -9,4 +9,10 @@ class List_Settings extends Model
 {
     use HasFactory;
     protected $table = "tblsetting";
+    protected $fillable = [
+        'username',
+        'fullname',
+        'posisi',
+    ];
+    public $timestamps = false;
 }

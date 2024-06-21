@@ -38,17 +38,17 @@
     
     $('#addForm').on('submit', function(e){
         e.preventDefault();
-        var nama = $('#addNama').val();
-        var alamat = $('#addAlamat').val();
-        var telepon = $('#addTelepon').val();
+        var spottype = $('#addspottype').val();
+        var description = $('#adddescription').val();
+        var spottypeupdate = $('#addspottypeupdate').val();
         $.ajax({
             type: 'POST',
             url: '/addData',
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'spottype': spottype,
+                'description': description,
+                'spottypeupdate': spottypeupdate
             },
             success: function(response){
                 alert('Data Added');
@@ -81,22 +81,22 @@
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         var data = row.data();
-        tr.html('<td><input type="text" id="editNama" value="' + data.nama + '"></td><td><input type="text" id="editAlamat" value="' + data.alamat + '"></td><td><input type="text" id="editTelepon" value="' + data.telepon + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
+        tr.html('<td><input type="text" id="editspottype" value="' + data.spottype + '"></td><td><input type="text" id="editdescription" value="' + data.description + '"></td><td><input type="text" id="editspottypeupdate" value="' + data.spottypeupdate + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
     });
     
     $(document).on('click', '.save', function(){
         var id = $(this).data('id');
-        var nama = $('#editNama').val();
-        var alamat = $('#editAlamat').val();
-        var telepon = $('#editTelepon').val();
+        var spottype = $('#editspottype').val();
+        var description = $('#editdescription').val();
+        var spottypeupdate = $('#editspottypeupdate').val();
         $.ajax({
             type: 'POST',
-            url: '/updateData/'+id,
+            url: '/updateDataSpottype/'+id,
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'spottype': spottype,
+                'description': description,
+                'spottypeupdate': spottypeupdate
             },
             success: function(response){
                 alert('Data Updated');
@@ -129,7 +129,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((willDelete) => {
                 if (willDelete) {
-                    $('#deleteForm').attr('action', '/delete-data/' + id);
+                    $('#deleteForm').attr('action', '/delete-dataSpottype/' + id);
                     $('#deleteForm').submit();
                 }
             });

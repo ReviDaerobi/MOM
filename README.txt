@@ -1,5 +1,7 @@
 1. Install Composer Dan NodeJS
 	* composer nya harus mengarah ke file php, nanti ada pilihan add path ceklis
+	link download composer : https://getcomposer.org/download/
+	link download node : https://nodejs.org/en
 2. Ketik Perintah composer install di terminal root folder
 3. Ketik Lagi npm install
 4. Ubah nama .env.example menjadi .env

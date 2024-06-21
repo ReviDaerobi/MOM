@@ -7,18 +7,16 @@
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 @endpush
 
-<div class="h-screen flex flex-row flex-wrap">
+
 @section('header')
 @include('base.navbar')
 @endsection
 
-<section>
 @section('sidebar')
 
 @include('base.sidebar')
 
 @endsection
-</section>
 {{-- Modal --}}
 
 
@@ -40,15 +38,15 @@
                                     @csrf
                                     <div class="form-group">
                                         <label>Nama:</label>
-                                        <input type="text" class="form-control" id="addNama" name="nama">
+                                        <input type="text" class="form-control" id="add1" name="add1">
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat:</label>
-                                        <input type="text" class="form-control" id="addAlamat" name="alamat">
+                                        <input type="text" class="form-control" id="add2" name="add2">
                                     </div>
                                     <div class="form-group">
                                         <label>Telepon:</label>
-                                        <input type="text" class="form-control" id="addTelepon" name="telepon">
+                                        <input type="text" class="form-control" id="add3" name="add3">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Tambah</button>
                                 </form>
@@ -69,12 +67,12 @@
 
 {{-- End Modal --}}
 
-<main>
+
 @section('konten')
     @yield('table')
 @endsection
-</main>
-</div>
+
+
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

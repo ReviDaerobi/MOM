@@ -10,4 +10,10 @@ class List_Advetiser extends Model
     use HasFactory;
 
     protected $table = "t_m_client";
+    protected $fillable = [
+        'username',
+        'fullname',
+        'posisi',
+    ];
+    public $timestamps = false;
 }

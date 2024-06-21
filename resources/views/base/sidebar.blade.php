@@ -1,20 +1,15 @@
-<div id="sideBar" class="relative hidden flex-col flex-wrap h-screen bg-sidebarColor border-r border-gray-300 p-6 flex-none w-64 md:-ml-64 md:fixed md:top-0 md:z-30 md:h-screen md:shadow-xl animate__animated">
-    <!-- sidebar content -->
-    <div class="flex flex-col">
-      <ul class="mt-4">
-        <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Base</p>
-        <!-- link -->
-        <li class="mb-1 group active">
-
-          <a href="./index.html" class="flex items-center py-2 px-4 text-gray hover:text-white">
-            <i class="fad fa-chart-pie text-xs mr-2"></i>                
-            Parameter
-          </a>
-        </li>
-          <!-- end link -->
-      <!-- link -->
+<div id="sideBar" class="relative hidden flex-col flex-wrap h-screen bg-sidebarColor border-r border-gray-300 p-6 flex-none w-64 md:fixed md:top-0 md:left-0 md:z-30 md:shadow-xl animate__animated">
+  <!-- sidebar content -->
+  <div class="flex flex-col">
+    <ul class="mt-4">
+      <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Base</p>
+      <li class="mb-1 group active">
+        <a href="./index.html" class="flex items-center py-2 px-4 text-gray hover:text-white">
+          <i class="fad fa-chart-pie text-xs mr-2"></i>                
+          Parameter
+        </a>
+      </li>
       <li class="mb-1 group">
-        
         <a href="#" class="flex items-center py-2 px-4 text-gray hover:text-white" id="sidebar-dropdown-toggle">
           <i class="fad fa-shopping-cart text-xs mr-2"></i>
           <span>Master</span>
@@ -46,13 +41,13 @@
             <a class="text-gray-300 text-sm flex items-center" href="/list-spottype">list spottype</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-channel">list spottype</a>
+            <a class="text-gray-300 text-sm flex items-center" href="/list-channel">list channel</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-category">list spottype</a>
+            <a class="text-gray-300 text-sm flex items-center" href="/list-category">list category</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-settings">list spottype</a>
+            <a class="text-gray-300 text-sm flex items-center" href="/list-settings">list settings</a>
           </li>
         </ul>
       </li>
@@ -64,47 +59,55 @@
   <!-- end sidbar -->
     @push('scripts')
     <script>
-      document.querySelectorAll('#sidebar-dropdown-toggle').forEach(function(item) {
-  item.addEventListener('click', function(e) {
-    e.preventDefault()
-    const parent = item.closest('.group')
-    if(parent.classList.contains('selected')) {
-      parent.classList.remove('selected')
-    } else {
-      document.querySelectorAll('#sidebar-dropdown-toggle').forEach(function(i) {
-        i.closest('.group').classList.remove('active')
-      }) 
-      parent.classList.add('selected')
-    }
-  })
-})
-    </script>
-        <script>
-// work with sidebar
-var btn     = document.getElementById('sliderBtn'),
-    sideBar = document.getElementById('sideBar'),
-    sideBarHideBtn = document.getElementById('sideBarHideBtn');
-    listIcon = document.getElementById('')
+   document.addEventListener('DOMContentLoaded', function () {
+  var btn = document.getElementById('sliderBtn');
+  var sideBar = document.getElementById('sideBar');
+  var listIcon = document.getElementById('list-icon');
+  var mainContent = document.getElementById('mainContent');
 
   // Toggle sidebar
-btn.addEventListener('click', function() {
-    sideBar.classList.toggle('animate__slideInLeft');
-    sideBar.classList.remove('hidden');
-    sideBar.classList.add('flex');
-    listIcon.classList.toggle('fa-solid'); // Toggle hamburger icon
-    listIcon.classList.replace('fa-list-ul', 'fa-xmark'); // Toggle X icon
+  btn.addEventListener('click', function() {
+      if (sideBar.classList.contains('hidden')) {
+          // Show sidebar with slideInLeft animation
+          sideBar.classList.remove('hidden');
+          sideBar.classList.add('flex', 'animate__slideInLeft');
+          sideBar.classList.remove('animate__slideOutLeft');
+          mainContent.classList.add('ml-64'); // shift content right
+      } else {
+          // Hide sidebar with slideOutLeft animation
+          sideBar.classList.remove('animate__slideInLeft');
+          sideBar.classList.add('animate__slideOutLeft');
+          mainContent.classList.remove('ml-64'); // reset content shift
+          // Ensure the sidebar is hidden after the animation ends
+          sideBar.addEventListener('animationend', function() {
+              if (sideBar.classList.contains('animate__slideOutLeft')) {
+                  sideBar.classList.add('hidden');
+                  sideBar.classList.remove('flex');
+              }
+          }, { once: true });
+      }
+      // Toggle icon
+      listIcon.classList.toggle('fa-list-ul');
+      listIcon.classList.toggle('fa-xmark');
+  });
+
+  // Dropdown toggle inside sidebar
+  document.querySelectorAll('#sidebar-dropdown-toggle').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      var parent = item.closest('.group');
+      if (parent.classList.contains('selected')) {
+        parent.classList.remove('selected');
+      } else {
+        document.querySelectorAll('#sidebar-dropdown-toggle').forEach(function(i) {
+          i.closest('.group').classList.remove('selected');
+        });
+        parent.classList.add('selected');
+      }
+    });
+  });
 });
 
-// Hide sidebar with 'X' button
-listIcon.addEventListener('click', function() {
-  sideBar.classList.replace('animate__slideInLeft'. 'animate__slideOutLeft');
-  sideBar.classList.remove('flex');
-  sideBar.classList.add('hidden');
-  listIcon.classList.replace('fa-xmark', 'fa-list-ul');
-})
 
-
-// end with sidebar
-
-        </script>
+      </script>
     @endpush

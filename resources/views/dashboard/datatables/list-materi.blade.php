@@ -39,17 +39,17 @@
     
     $('#addForm').on('submit', function(e){
         e.preventDefault();
-        var nama = $('#addNama').val();
-        var alamat = $('#addAlamat').val();
-        var telepon = $('#addTelepon').val();
+        var version_name = $('#add1').val();
+        var duration = $('#add2').val();
+        var type_iklan = $('#add3').val();
         $.ajax({
             type: 'POST',
-            url: '/addData',
+            url: '/addDataMateri',
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'version_name': version_name,
+                'duration': duration,
+                'type_iklan': type_iklan
             },
             success: function(response){
                 alert('Data Added');
@@ -82,22 +82,22 @@
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         var data = row.data();
-        tr.html('<td><input type="text" id="editNama" value="' + data.nama + '"></td><td><input type="text" id="editAlamat" value="' + data.alamat + '"></td><td><input type="text" id="editTelepon" value="' + data.telepon + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
+        tr.html('<td><input type="text" id="editversion_name" value="' + data.version_name + '"></td><td><input type="text" id="editduration" value="' + data.duration + '"></td><td><input type="text" id="edittype_iklan" value="' + data.type_iklan + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
     });
     
     $(document).on('click', '.save', function(){
         var id = $(this).data('id');
-        var nama = $('#editNama').val();
-        var alamat = $('#editAlamat').val();
-        var telepon = $('#editTelepon').val();
+        var version_name = $('#editversion_name').val();
+        var duration = $('#editduration').val();
+        var type_iklan = $('#edittype_iklan').val();
         $.ajax({
             type: 'POST',
-            url: '/updateData/'+id,
+            url: '/updateDataMateri/'+id,
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'version_name': version_name,
+                'duration': duration,
+                'type_iklan': type_iklan
             },
             success: function(response){
                 alert('Data Updated');
@@ -130,7 +130,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((willDelete) => {
                 if (willDelete) {
-                    $('#deleteForm').attr('action', '/delete-data/' + id);
+                    $('#deleteForm').attr('action', '/delete-dataMateri/' + id);
                     $('#deleteForm').submit();
                 }
             });

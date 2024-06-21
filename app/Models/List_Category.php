@@ -9,4 +9,10 @@ class List_Category extends Model
 {
     use HasFactory;
     protected $table = "t_m_category";
+    protected $fillable = [
+        'username',
+        'fullname',
+        'posisi',
+    ];
+    public $timestamps = false;
 }

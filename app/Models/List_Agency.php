@@ -9,4 +9,10 @@ class List_Agency extends Model
 {
     use HasFactory;
     protected $table = "t_m_agencies";
+    protected $fillable = [
+        'username',
+        'fullname',
+        'posisi',
+    ];
+    public $timestamps = false;
 }

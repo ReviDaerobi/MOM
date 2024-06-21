@@ -9,6 +9,23 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
+<style>
+  /* Ensure main content has enough padding to not be covered by the sidebar */
+@media (min-width: 768px) {
+  main {
+    margin-left: 16rem; /* 64px sidebar width */
+  }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 767px) {
+  #sideBar {
+    position: absolute;
+    z-index: 30;
+  }
+}
+
+</style>
   @stack('styles')
   @vite('resources/css/app.css')
   @vite('resources/js/app.js')
@@ -20,9 +37,16 @@
   <header>
     @yield('header')
   </header>
-    
+  <div class="h-screen flex flex-row flex-wrap">
+    <section>
+
       @yield('sidebar')
-      @yield('konten')
+    </section>
+    <main class="flex-grow transition-all duration-300 overflow-auto" id="mainContent">
+
+        @yield('konten')
+      </main>
+  </div>
       @yield('login')
 
     @stack('scripts')

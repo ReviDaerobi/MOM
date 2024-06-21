@@ -9,4 +9,10 @@ class List_Brand extends Model
 {
     use HasFactory;
     protected $table = "t_m_brand";
+    protected $fillable = [
+        'username',
+        'fullname',
+        'posisi',
+    ];
+    public $timestamps = false;
 }

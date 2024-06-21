@@ -83,7 +83,7 @@
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         var data = row.data();
-        tr.html('<td><input type="text" id="editNama" value="' + data.nama + '"></td><td><input type="text" id="editAlamat" value="' + data.alamat + '"></td><td><input type="text" id="editTelepon" value="' + data.telepon + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
+        tr.html('<td><input type="text" id="editNama" value="' + data.username + '"></td><td><input type="text" id="editAlamat" value="' + data.fullname + '"></td><td><input type="text" id="editTelepon" value="' + data.posisi + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
     });
     
     $(document).on('click', '.save', function(){

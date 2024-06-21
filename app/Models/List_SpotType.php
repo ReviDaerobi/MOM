@@ -9,4 +9,10 @@ class List_SpotType extends Model
 {
     use HasFactory;
     protected $table = "t_m_spottype";
+    protected $fillable = [
+        'username',
+        'fullname',
+        'posisi',
+    ];
+    public $timestamps = false;
 }

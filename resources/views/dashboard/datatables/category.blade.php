@@ -37,16 +37,16 @@
     
     $('#addForm').on('submit', function(e){
         e.preventDefault();
-        var nama = $('#addNama').val();
-        var alamat = $('#addAlamat').val();
+        var n_kategory = $('#addn_kategory').val();
+        var id = $('#addid').val();
         var telepon = $('#addTelepon').val();
         $.ajax({
             type: 'POST',
             url: '/addData',
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
+                'n_kategory': n_kategory,
+                'id': id,
                 'telepon': telepon
             },
             success: function(response){
@@ -80,22 +80,21 @@
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         var data = row.data();
-        tr.html('<td><input type="text" id="editNama" value="' + data.nama + '"></td><td><input type="text" id="editAlamat" value="' + data.alamat + '"></td><td><input type="text" id="editTelepon" value="' + data.telepon + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
+        tr.html('<td><input type="text" id="editid" value="' + data.id + '"></td><td><input type="text" id="editn_kategory" value="' + data.n_kategory + '"></td><td><button class="save btn btn-success btn-sm" data-id="' + data.id + '">Save</button></td>');
     });
     
     $(document).on('click', '.save', function(){
         var id = $(this).data('id');
-        var nama = $('#editNama').val();
-        var alamat = $('#editAlamat').val();
-        var telepon = $('#editTelepon').val();
+        var id = $('#editid').val();
+        var n_kategory = $('#editn_kategory').val();
         $.ajax({
             type: 'POST',
-            url: '/updateData/'+id,
+            url: '/updateDataCategory/'+id,
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'id': id,
+                'n_kategory': n_kategory,
+                
             },
             success: function(response){
                 alert('Data Updated');
@@ -128,7 +127,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((willDelete) => {
                 if (willDelete) {
-                    $('#deleteForm').attr('action', '/delete-data/' + id);
+                    $('#deleteForm').attr('action', '/delete-dataCategory/' + id);
                     $('#deleteForm').submit();
                 }
             });
