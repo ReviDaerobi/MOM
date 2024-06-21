@@ -40,17 +40,17 @@
     
     $('#addForm').on('submit', function(e){
         e.preventDefault();
-        var nama = $('#addNama').val();
-        var alamat = $('#addAlamat').val();
-        var telepon = $('#addTelepon').val();
+        var username = $('#addNama').val();
+        var fullname = $('#addAlamat').val();
+        var posisi = $('#addTelepon').val();
         $.ajax({
             type: 'POST',
             url: '/addData',
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'username': username,
+                'fullname': fullname,
+                'posisi': posisi
             },
             success: function(response){
                 alert('Data Added');
@@ -88,17 +88,17 @@
     
     $(document).on('click', '.save', function(){
         var id = $(this).data('id');
-        var nama = $('#editNama').val();
-        var alamat = $('#editAlamat').val();
-        var telepon = $('#editTelepon').val();
+        var username = $('#editNama').val();
+        var fullname = $('#editAlamat').val();
+        var posisi = $('#editTelepon').val();
         $.ajax({
             type: 'POST',
             url: '/updateData/'+id,
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
-                'nama': nama,
-                'alamat': alamat,
-                'telepon': telepon
+                'username': username,
+                'fullname': fullname,
+                'posisi': posisi
             },
             success: function(response){
                 alert('Data Updated');

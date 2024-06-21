@@ -40,7 +40,7 @@ class DashboardController extends Controller
     }
 
     public function delete($id) {
-        $post = data_pegawai::find($id);
+        $post = List_User::find($id);
         $post->delete();
 
         return redirect('/list-user');
@@ -48,20 +48,20 @@ class DashboardController extends Controller
 
     public function addData(Request $request)
 {
-    $data = new data_pegawai;
-    $data->nama = $request->nama;
-    $data->alamat = $request->alamat;
-    $data->telepon = $request->telepon;
+    $data = new List_User;
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
     $data->save();
     return response()->json(['success'=>'Data added successfully.']);
 }
 
     public function updateData(Request $request, $id)
 {
-    $data = data_pegawai::find($id);
-    $data->nama = $request->nama;
-    $data->alamat = $request->alamat;
-    $data->telepon = $request->telepon;
+    $data = List_User::find($id);
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
     $data->save();
     return response()->json(['success'=>'Data updated successfully.']);
 }
@@ -85,6 +85,33 @@ class DashboardController extends Controller
         return view('dashboard.datatables.list-materi');
     }
 
+    public function deleteMateri($id) {
+        $post = List_User::find($id);
+        $post->delete();
+
+        return redirect('/list-user');
+    }
+
+    public function addDataMateri(Request $request)
+{
+    $data = new List_User;
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
+    $data->save();
+    return response()->json(['success'=>'Data added successfully.']);
+}
+
+    public function updateDataMateri(Request $request, $id)
+{
+    $data = List_User::find($id);
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
+    $data->save();
+    return response()->json(['success'=>'Data updated successfully.']);
+}
+
     // list holding
 
     public function indexListHolding(Request $request) {
@@ -104,7 +131,34 @@ class DashboardController extends Controller
         return view('dashboard.datatables.list-holding');
     }
 
-    // list agency
+    public function deleteHolding($id) {
+        $post = List_User::find($id);
+        $post->delete();
+
+        return redirect('/list-user');
+    }
+
+    public function addDataHolding(Request $request)
+{
+    $data = new List_User;
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
+    $data->save();
+    return response()->json(['success'=>'Data added successfully.']);
+}
+
+    public function updateDataHolding(Request $request, $id)
+{
+    $data = List_User::find($id);
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
+    $data->save();
+    return response()->json(['success'=>'Data updated successfully.']);
+}
+
+    // list Agency
 
     public function indexListAgency(Request $request) {
 
@@ -124,7 +178,34 @@ class DashboardController extends Controller
 
     }
 
-    // list advertiser
+    public function deleteAgency($id) {
+        $post = List_User::find($id);
+        $post->delete();
+
+        return redirect('/list-user');
+    }
+
+    public function addDataAgency(Request $request)
+{
+    $data = new List_User;
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
+    $data->save();
+    return response()->json(['success'=>'Data added successfully.']);
+}
+
+    public function updateDataAgency(Request $request, $id)
+{
+    $data = List_User::find($id);
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
+    $data->save();
+    return response()->json(['success'=>'Data updated successfully.']);
+}
+
+    // list Advertiser
 
     public function indexListAdvertiser(Request $request) {
 
@@ -144,7 +225,34 @@ class DashboardController extends Controller
 
     }
 
-    // list brand
+    public function deleteAdvertiser($id) {
+        $post = List_User::find($id);
+        $post->delete();
+
+        return redirect('/list-user');
+    }
+
+    public function addDataAdvertiser(Request $request)
+{
+    $data = new List_User;
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
+    $data->save();
+    return response()->json(['success'=>'Data added successfully.']);
+}
+
+    public function updateDataAdvertiser(Request $request, $id)
+{
+    $data = List_User::find($id);
+    $data->username = $request->username;
+    $data->fullname = $request->fullname;
+    $data->posisi = $request->posisi;
+    $data->save();
+    return response()->json(['success'=>'Data updated successfully.']);
+}
+
+    // list Brand
 
     public function indexListBrand(Request $request) {
 

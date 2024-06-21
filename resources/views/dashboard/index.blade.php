@@ -7,17 +7,20 @@
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 @endpush
 
+<div class="h-screen flex flex-row flex-wrap">
 @section('header')
 @include('base.navbar')
 @endsection
 
+<section>
 @section('sidebar')
 
 @include('base.sidebar')
 
 @endsection
-
+</section>
 {{-- Modal --}}
+
 
 <div x-data="{ open: false }" @keydown.escape.window="open = false">
    
@@ -66,11 +69,12 @@
 
 {{-- End Modal --}}
 
-
+<main>
 @section('konten')
     @yield('table')
 @endsection
-
+</main>
+</div>
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -79,40 +83,6 @@
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<script>
-    var navbarToggle = document.getElementById('navbarToggle'),
-    navbar       = document.getElementById('navbar');
-
-
-
-navbarToggle.addEventListener('click' , function(){
-
-    if (navbar.classList.contains('md:hidden')) {
-        navbar.classList.remove('md:hidden');
-        navbar.classList.add('fadeIn');   
-    }else{
-        var _classRemover =  function () {
-            navbar.classList.remove('fadeIn');   
-            navbar.classList.add('fadeOut');
-            console.log('removed');
-            
-        };  
-        
-        var animate = async function(){
-            await _classRemover();
-            console.log('animated');
-            
-            setTimeout(function(){
-                navbar.classList.add('md:hidden');
-                navbar.classList.remove('fadeOut');
-            }, 450);            
-        };
-
-        animate();        
-    };
-    
-});
-</script>
 
 @stack('scripts-datatable')
 

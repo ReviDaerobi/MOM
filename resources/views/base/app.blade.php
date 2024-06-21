@@ -20,17 +20,10 @@
   <header>
     @yield('header')
   </header>
-  <div class="h-screen flex flex-row flex-wrap">
-
-    <section >
+    
       @yield('sidebar')
-    </section>
-    <main class="flex-grow">
       @yield('konten')
-    </main>
-  </div>
-
-  @yield('login')
+      @yield('login')
 
     @stack('scripts')
 </body>

@@ -9,5 +9,13 @@ class List_User extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'username',
+        'fullname',
+        'posisi',
+    ];
+
     protected $table = 'tbluser';
+
+    public $timestamps = false;
 }
