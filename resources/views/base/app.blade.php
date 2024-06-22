@@ -9,7 +9,19 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 <style>
+  .nunito-sans-base {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 1000;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100,
+      "YTLC" 500;
+  }
   /* Ensure main content has enough padding to not be covered by the sidebar */
 @media (min-width: 768px) {
   main {
@@ -25,6 +37,7 @@
   }
 }
 
+
 </style>
   @stack('styles')
   @vite('resources/css/app.css')
@@ -32,7 +45,7 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 
-<body class="bg-baseColor font-mono">
+<body class="bg-baseColor nunito-sans-base">
 
   <header>
     @yield('header')

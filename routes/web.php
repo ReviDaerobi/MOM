@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// View
+// Login
 
+Route::post('/login', [LoginController::class, 'Login'])->name('login');
+
+// Logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Dashboard
+Route::middleware(['auth'])->group(function () {
 // list-user
 Route::get('/list-user', [DashboardController::class,'indexListUser']);
 Route::post('/delete-data/{id}', [DashboardController::class,'delete']);
@@ -86,3 +94,5 @@ Route::get('/list-settings', [DashboardController::class,'indexListSettings']);
 Route::post('/delete-dataSettings/{id}', [DashboardController::class,'deleteSettings']);
 Route::post('/updateDataSettings/{id}', [DashboardController::class, 'updateDataSettings']);
 Route::post('/addDataSettings', [DashboardController::class, 'addDataSettings']);
+
+});

@@ -11,11 +11,18 @@ module.exports = {
       navbarColor: "#F1F8E8",
       sidebarColor: "#F1F8E8",
       cardColor: "#F6F1F1",
+      dangerColor: "#973131",
       white: "#ffffff",
       gray300: "#d1d5db",
       gray600: "#6b7280",
+
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'backgroundlogin': "url('/src/img/studio.jpg')",
+       
+      }
+    },
     screens: {
       'sm': {'max': '639px'},
 

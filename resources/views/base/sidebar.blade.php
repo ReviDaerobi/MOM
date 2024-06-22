@@ -53,6 +53,15 @@
       </li>
       <!-- end link -->
     </ul>
+    <div class="mt-auto">
+      <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="w-full py-2 px-4 text-gray-700 hover:text-white bg-red-600 hover:bg-red-700 rounded focus:outline-none focus:shadow-outline">
+          <i class="fad fa-sign-out-alt text-xs mr-2"></i>
+          Logout
+        </button>
+      </form>
+    </div>
     </div>
     <!-- end sidebar content -->
   </div>
