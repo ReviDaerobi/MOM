@@ -1,16 +1,14 @@
-<!-- login.blade.php -->
-
 @extends('base.appLogin')
 
 @section('login')
-<div class="h-screen bg-cover bg-center md:bg-white md:bg-cover md:bg-center bg-[url('/public/src/img/studio.jpg')]">
-    <div class="flex h-full">
+<div class="h-screen bg-cover bg-center md:bg-white md:bg-[url('')] bg-[url('/public/src/img/studio.jpg')]">
+    <div class="flex h-full flex-col md:flex-row">
         <!-- Left Side -->
         <div class="w-full md:w-1/2 flex items-center justify-center">
-            <div class="bg-opacity-10 backdrop-blur-sm w-full max-w-md p-8 bg-white rounded-lg shadow-md md:m-10">
+            <div class="bg-opacity-10 backdrop-blur-sm w-full max-w-md p-8 bg-white rounded-lg shadow-md sm:m-0 md:m-10 sm:w-screen sm:h-screen">
                 <div class="text-center mb-8">
                     <img src="/src/img/logo.png" alt="Logo" class="w-12 h-12 mx-auto mb-4">
-                    <h1 class="text-3xl font-bold text-gray-900">Media Order Monitoring</h1>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Media Order Monitoring</h1>
                     <p class="text-gray-500 mt-2">Monitoring Anywhere Anytime</p>
                 </div>
                 <form action="/login" method="post">
@@ -34,14 +32,14 @@
                             <p class="text-dangerColor text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
-                    <button type="submit" class=" bg-gray600 hover:scale-105 hover:-translate-y-1 transform transition duration-300 text-white font-bold py-2 px-4 w-full rounded focus:outline-none focus:shadow-outline">Login</button>
+                    <button type="submit" class="bg-gray600 hover:scale-105 hover:-translate-y-1 transform transition duration-300 text-white font-bold py-2 px-4 w-full rounded focus:outline-none focus:shadow-outline">Login</button>
                 </form>
             </div>
         </div>
         <!-- Right Side -->
-        <div class="hidden md:flex md:w-1/2 bg-cover bg-center bg-[url('/public/src/img/studio.jpg')] ">
+        <div class="hidden md:flex md:w-1/2 bg-cover bg-center" style="background-image: url('/src/img/studio.jpg')">
             <div class="flex items-center justify-center w-full h-full bg-opacity-50 bg-black">
-                <h1 class="text-5xl font-bold text-white">Welcome Back!</h1>
+                <h1 class="text-3xl md:text-5xl font-bold text-white">Welcome Back!</h1>
             </div>
         </div>
     </div>
