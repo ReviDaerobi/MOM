@@ -2,10 +2,10 @@
 
 @section('login')
 <div class="h-screen bg-cover bg-center md:bg-white md:bg-[url('')] bg-[url('/public/src/img/studio.jpg')]">
-    <div class="flex h-full flex-col md:flex-row">
+    <div class="flex h-full md:flex-row">
         <!-- Left Side -->
         <div class="w-full md:w-1/2 flex items-center justify-center">
-            <div class="bg-opacity-10 backdrop-blur-sm w-full max-w-md p-8 bg-white rounded-lg shadow-md sm:m-0 md:m-10 sm:w-screen sm:h-screen">
+            <div class="bg-opacity-10 backdrop-blur-sm w-full max-w-md p-8 bg-white rounded-lg shadow-md md:shadow-none sm:m-0 ">
                 <div class="text-center mb-8">
                     <img src="/src/img/logo.png" alt="Logo" class="w-12 h-12 mx-auto mb-4">
                     <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Media Order Monitoring</h1>

@@ -12,11 +12,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/css/loader.css">
 <style>
   .nunito-sans-base {
     font-family: "Nunito Sans", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 1000;
+    font-weight: 400;
     font-style: normal;
     font-variation-settings:
       "wdth" 100,
@@ -46,6 +47,11 @@
 </head>
 
 <body class="bg-white nunito-sans-base">
+  <div class="container loader">
+    <div class="loader"></div>
+    <div class="loader"></div>
+    <div class="loader"></div>
+  </div>
 
   <header>
     @yield('header')
@@ -63,5 +69,23 @@
       @yield('login')
 
     @stack('scripts')
+
+    <script>
+      document.onreadystatechange = function () {
+              if (document.readyState !== "complete") {
+                  document.querySelector(
+                      "body").style.visibility = "hidden";
+                  document.querySelector(
+                      ".loader").style.visibility = "visible";
+              } else {
+                  document.querySelector(
+                      ".loader").style.display = "none";
+                  document.querySelector(
+                      "body").style.visibility = "visible";
+              }
+          };
+
+      
+    </script>
 </body>
 </html>

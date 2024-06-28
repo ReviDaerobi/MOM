@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\List_User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -20,12 +22,32 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-      
-        if(Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
+        //Get the user
+        $user = List_User::where('username', $request->username)->first();
+    
+        //If Hached by bcrypt
+        if (Auth::attempt($credentials, $request->has('remember'))) 
+        {
             return redirect('/list-user');
         }
+        else //Else if Hached by md5
+        {
+            if( $user && $user->password == md5($request->password) )
+            {
+                $user->password = Hash::make($request->password);
+                $user->save();
+                return redirect('/list-user');
+    
+                if($user->authorized){
+                    $user->save();
+    
+                    Auth::login($user);
+                    return redirect('/list-user');
+                }else
+                    Auth::logout();
+            }
+        }
+    
         return back()->withErrors([
             'username' => 'The provided credentials do not match our records.',
         ]);

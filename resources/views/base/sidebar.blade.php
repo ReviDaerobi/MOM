@@ -1,53 +1,53 @@
-<div id="sideBar" class="relative hidden flex-col flex-wrap h-screen bg-sidebarColor border-r border-gray-300 p-6 flex-none w-64 md:fixed md:top-0 md:left-0 md:z-30 md:shadow-xl animate__animated">
+<div id="sideBar" class="relative hidden flex-col flex-wrap h-screen bg-white border-r border-gray-300 p-6 flex-none w-64 md:fixed md:top-0 md:left-0 md:z-30 md:shadow-xl animate__animated">
   <!-- sidebar content -->
   <div class="flex flex-col">
     <ul class="mt-4">
       <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Base</p>
       <li class="mb-1 group active">
-        <a href="./index.html" class="flex items-center py-2 px-4 text-gray hover:text-white">
+        <a href="./index.html" class="flex items-center py-2 px-4 hover:text-gray600">
           <i class="fad fa-chart-pie text-xs mr-2"></i>                
           Parameter
         </a>
       </li>
       <li class="mb-1 group">
-        <a href="#" class="flex items-center py-2 px-4 text-gray hover:text-white" id="sidebar-dropdown-toggle">
+        <a href="#" class="flex items-center py-2 px-4 hover:text-gray600" id="sidebar-dropdown-toggle">
           <i class="fad fa-shopping-cart text-xs mr-2"></i>
           <span>Master</span>
           <i class="fa-solid fa-arrow-right ml-auto group-[.selected]:rotate-90"></i>
         </a>
         <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropdown">
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-user">list user</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-user">list user</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-materi">list materi</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-materi">list materi</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-holding">list holding</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-holding">list holding</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-agency">list agency</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-agency">list agency</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-advertiser">list advertiser</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-advertiser">list advertiser</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-brand">list brand</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-brand">list brand</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-flagrate">list flagrate</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-flagrate">list flagrate</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-spottype">list spottype</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-spottype">list spottype</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-channel">list channel</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-channel">list channel</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-category">list category</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-category">list category</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-300 text-sm flex items-center" href="/list-settings">list settings</a>
+            <a class="text-gray-600 text-sm flex items-center" href="/list-settings">list settings</a>
           </li>
         </ul>
       </li>
@@ -98,6 +98,7 @@
       // Toggle icon
       listIcon.classList.toggle('fa-list-ul');
       listIcon.classList.toggle('fa-xmark');
+      listIcon.classList.toggle('fa-solid');
   });
 
   // Dropdown toggle inside sidebar

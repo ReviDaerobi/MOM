@@ -9,6 +9,7 @@
   @vite('resources/css/app.css')
   @vite('resources/js/app.js')
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <link rel="stylesheet" href="/src/css/loader.css">
   <style>
       .nunito-sans-base {
     font-family: "Nunito Sans", sans-serif;
@@ -22,6 +23,27 @@
   </style>
 </head>
 <body class="bg-gray-100 nunito-sans-base">
+  <div class="container loader">
+    <div class="loader"></div>
+    <div class="loader"></div>
+    <div class="loader"></div>
+  </div>
   @yield('login')
+
+  <script>
+    document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                    "body").style.visibility = "hidden";
+                document.querySelector(
+                    ".loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                    ".loader").style.display = "none";
+                document.querySelector(
+                    "body").style.visibility = "visible";
+            }
+        };
+  </script>
 </body>
 </html>

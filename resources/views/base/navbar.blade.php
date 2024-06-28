@@ -1,16 +1,22 @@
 <!-- start navbar -->
-<div class="flex items-center justify-between bg-navbarColor p-3 border-b border-gray-300">
-  <!-- hamburger icon -->
-  <div>
-    <button id="sliderBtn" class="text-gray-900">
-      <i id="list-icon" class="fad fa-list-ul"></i>
-    </button>
+<div class="flex items-center justify-between bg-white p-3 border-b border-gray-300">
+  <div class="flex">
+    <div class="flex-grow text-center md:hidden">
+      <strong class="capitalize animate__animated animate__bounce">Media Order Monitoring</strong>
+    </div>
+    <!-- end title -->
+    <!-- hamburger icon -->
+    <div class="ml-10 mt-3">
+      <button id="sliderBtn" class="text-gray-900">
+        <i id="list-icon" class="fad fa-list-ul fa-xl"></i>
+      </button>
+    </div>
+    <!-- end hamburger icon -->
   </div>
-  <!-- end hamburger icon -->
-  
-  <!-- title -->
+    
+    <!-- title -->
   <div class="flex-grow text-center">
-    <strong class="capitalize animate__animated animate__bounce">Media Order Monitoring</strong>
+    <strong class="capitalize animate__animated animate__bounce">Dashboard</strong>
   </div>
   <!-- end title -->
 

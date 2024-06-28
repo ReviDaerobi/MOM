@@ -65,6 +65,7 @@
     var table = $('#example').DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
         ajax: "/list-user", // Ubah route ke route yang sesuai dengan data mahasiswa
         columns: [
             
