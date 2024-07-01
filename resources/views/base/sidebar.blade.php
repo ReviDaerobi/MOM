@@ -1,54 +1,40 @@
-<div id="sideBar" class="relative hidden flex-col flex-wrap h-screen bg-white border-r border-gray-300 p-6 flex-none w-64 md:fixed md:top-0 md:left-0 md:z-30 md:shadow-xl animate__animated">
-  <!-- sidebar content -->
-  <div class="flex flex-col">
-    <ul class="mt-4">
+<div id="sideBar" class="mt-5 mb-10 relative hidden flex flex-col bg-white border border-gray-300 p-7 flex-none w-64 md:fixed md:top-0 md:left-0 md:z-30 md:shadow-xl animate__animated sidebar-height">
+  <!-- Profile Component -->
+  <div class="flex items-center mb-6">
+    <div class="w-12 h-12 bg-gray-200 flex-shrink-0">
+      <!-- Replace with user's profile photo -->
+      <img src="{{ Auth::user()->profileLink ? asset('/storage/' . Auth::user()->profileLink) : 'https://via.placeholder.com/80' }}" alt="Profile Photo" class="w-full h-full object-cover">
+    </div>
+    <div class="ml-4">
+      <h2 class="text-sm text-gray-700 font-semibold">Welcome, {{ Auth::user()->username }}!</h2>
+      <h2 class="text-xs text-gray-500">{{ Auth::user()->userAs }}</h2>
+    </div>
+  </div>
+
+  <!-- Sidebar Content -->
+  <div class="flex-grow flex flex-col">
+    <ul class="mt-4 flex-grow">
       <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Base</p>
       <li class="mb-1 group active">
-        <a href="./index.html" class="flex items-center py-2 px-4 hover:text-gray600">
+        <a href="./index.html" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300">
           <i class="fad fa-chart-pie text-xs mr-2"></i>                
           Parameter
         </a>
       </li>
       <li class="mb-1 group">
-        <a href="#" class="flex items-center py-2 px-4 hover:text-gray600" id="sidebar-dropdown-toggle">
+        <a href="#" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" id="sidebar-dropdown-toggle">
           <i class="fad fa-shopping-cart text-xs mr-2"></i>
           <span>Master</span>
           <i class="fa-solid fa-arrow-right ml-auto group-[.selected]:rotate-90"></i>
         </a>
         <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropdown">
           <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-user">list user</a>
+            <a class="text-gray-600 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="/list-user">list user</a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-materi">list materi</a>
+            <a class="text-gray-600 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="/list-materi">list materi</a>
           </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-holding">list holding</a>
-          </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-agency">list agency</a>
-          </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-advertiser">list advertiser</a>
-          </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-brand">list brand</a>
-          </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-flagrate">list flagrate</a>
-          </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-spottype">list spottype</a>
-          </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-channel">list channel</a>
-          </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-category">list category</a>
-          </li>
-          <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center" href="/list-settings">list settings</a>
-          </li>
+          <!-- Add more links as needed -->
         </ul>
       </li>
       <!-- end link -->
@@ -62,13 +48,14 @@
         </button>
       </form>
     </div>
-    </div>
-    <!-- end sidebar content -->
   </div>
-  <!-- end sidbar -->
-    @push('scripts')
-    <script>
-   document.addEventListener('DOMContentLoaded', function () {
+  <!-- end sidebar content -->
+</div>
+<!-- end sidebar -->
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
   var btn = document.getElementById('sliderBtn');
   var sideBar = document.getElementById('sideBar');
   var listIcon = document.getElementById('list-icon');
@@ -79,17 +66,17 @@
       if (sideBar.classList.contains('hidden')) {
           // Show sidebar with slideInLeft animation
           sideBar.classList.remove('hidden');
-          sideBar.classList.add('flex', 'animate__slideInLeft');
-          sideBar.classList.remove('animate__slideOutLeft');
+          sideBar.classList.add('flex', 'animate__slideInUp');
+          sideBar.classList.remove('animate__slideOutDown');
           mainContent.classList.add('ml-64'); // shift content right
       } else {
           // Hide sidebar with slideOutLeft animation
-          sideBar.classList.remove('animate__slideInLeft');
-          sideBar.classList.add('animate__slideOutLeft');
+          sideBar.classList.remove('animate__slideInUp');
+          sideBar.classList.add('animate__slideOutDown');
           mainContent.classList.remove('ml-64'); // reset content shift
           // Ensure the sidebar is hidden after the animation ends
           sideBar.addEventListener('animationend', function() {
-              if (sideBar.classList.contains('animate__slideOutLeft')) {
+              if (sideBar.classList.contains('animate__slideOutDown')) {
                   sideBar.classList.add('hidden');
                   sideBar.classList.remove('flex');
               }
@@ -117,7 +104,5 @@
     });
   });
 });
-
-
-      </script>
-    @endpush
+</script>
+@endpush

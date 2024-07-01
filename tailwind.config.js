@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     colors: {
       baseColor: "#D8EFD3",
-      navbarColor: "#F1F8E8",
-      sidebarColor: "#F1F8E8",
+      navbarColor: "#FCA311",
+      sidebarColor: "#fca311",
       cardColor: "#F6F1F1",
       dangerColor: "#973131",
       white: "#ffffff",

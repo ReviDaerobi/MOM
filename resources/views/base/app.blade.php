@@ -14,6 +14,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/src/css/loader.css">
 <style>
+
+#profileDropdown {
+  background-color: white; /* Solid background */
+  z-index: 50; /* Ensure it's above other content */
+}
+
   .nunito-sans-base {
     font-family: "Nunito Sans", sans-serif;
     font-optical-sizing: auto;
@@ -23,7 +29,13 @@
       "wdth" 100,
       "YTLC" 500;
   }
-  /* Ensure main content has enough padding to not be covered by the sidebar */
+  /* En
+  sure main content has enough padding to not be covered by the sidebar */
+
+  .sidebar-height {
+  height: calc(100vh - 4rem); /* Adjust '4rem' based on the actual height of your navbar */
+}
+
 @media (min-width: 768px) {
   main {
     margin-left: 16rem; /* 64px sidebar width */
@@ -57,7 +69,7 @@
     @yield('header')
   </header>
   <div class="h-screen flex flex-row flex-wrap">
-    <section>
+    <section class="ml-10">
 
       @yield('sidebar')
     </section>
@@ -66,7 +78,6 @@
         @yield('konten')
       </main>
   </div>
-      @yield('login')
 
     @stack('scripts')
 

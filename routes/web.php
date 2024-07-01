@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,3 +97,8 @@ Route::post('/updateDataSettings/{id}', [DashboardController::class, 'updateData
 Route::post('/addDataSettings', [DashboardController::class, 'addDataSettings']);
 
 });
+// Profile
+Route::post('/profile/upload-photo', [ProfileController::class, 'uploadPhoto'])->name('profile.uploadPhoto');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+
