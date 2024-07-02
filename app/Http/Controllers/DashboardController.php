@@ -31,7 +31,7 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="bg-red-100 bottom-4 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit btn btn-primary btn-sm" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -317,7 +317,7 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="bg-red-100 bottom-4 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit btn btn-primary btn-sm" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])

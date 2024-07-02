@@ -16,7 +16,7 @@
     
     <!-- title -->
   <div class="flex-grow text-center">
-    <strong class="capitalize text-3xl animate__animated animate__bounce">Dashboard</strong>
+    <strong class="capitalize text-3xl animate__animated animate__bounce" id="navbarTitle">Master</strong>
   </div>
   <!-- end title -->
 

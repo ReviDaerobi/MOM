@@ -15,6 +15,14 @@
 <link rel="stylesheet" href="/src/css/loader.css">
 <style>
 
+.group.selected ul {
+  display: block !important;
+}
+
+.group.selected i.fa-arrow-right {
+  transform: rotate(90deg);
+}
+
 #profileDropdown {
   background-color: white; /* Solid background */
   z-index: 50; /* Ensure it's above other content */
@@ -69,7 +77,7 @@
     @yield('header')
   </header>
   <div class="h-screen flex flex-row flex-wrap">
-    <section class="ml-10">
+    <section class="ml-2">
 
       @yield('sidebar')
     </section>
@@ -98,5 +106,6 @@
 
       
     </script>
+    
 </body>
 </html>

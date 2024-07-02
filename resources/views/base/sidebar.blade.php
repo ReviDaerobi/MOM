@@ -2,7 +2,6 @@
   <!-- Profile Component -->
   <div class="flex items-center mb-6">
     <div class="w-12 h-12 bg-gray-200 flex-shrink-0">
-      <!-- Replace with user's profile photo -->
       <img src="{{ Auth::user()->profileLink ? asset('/storage/' . Auth::user()->profileLink) : 'https://via.placeholder.com/80' }}" alt="Profile Photo" class="w-full h-full object-cover">
     </div>
     <div class="ml-4">
@@ -15,26 +14,88 @@
   <div class="flex-grow flex flex-col">
     <ul class="mt-4 flex-grow">
       <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Base</p>
-      <li class="mb-1 group active">
-        <a href="./index.html" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300">
+      <li class="mb-1 group">
+        <a href="/list-flagrate" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" id="sidebar-dropLeft-toggle">
           <i class="fad fa-chart-pie text-xs mr-2"></i>                
-          Parameter
+          <span>Parameter</span>
+          <i class="fa-solid fa-arrow-right ml-auto group-[.selected]:rotate-90"></i>
         </a>
+        <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropLeft">
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300 sidebar-link" data-title="Parameter" href="/list-flagrate">
+              <i class="fa-solid text-sm mr-2 fa-money-bill"></i>
+              <span>list flagrate</span>
+            </a>
+          </li>
+        </ul>
       </li>
       <li class="mb-1 group">
-        <a href="#" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" id="sidebar-dropdown-toggle">
+        <a href="#" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" id="sidebar-dropLeft-toggle">
           <i class="fad fa-shopping-cart text-xs mr-2"></i>
           <span>Master</span>
           <i class="fa-solid fa-arrow-right ml-auto group-[.selected]:rotate-90"></i>
         </a>
-        <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropdown">
+        <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropLeft">
           <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="/list-user">list user</a>
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300 sidebar-link" data-title="Master" href="/list-user">
+              <i class="fa-solid fa-user text-xs mr-2"></i>
+              <span>List User</span>
+            </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="/list-materi">list materi</a>
+            <a class="text-gray-600 py-2 px-4 ml-2  text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="/list-materi">
+              <i class="fa-solid fa-file-video text-xs mr-2"></i>
+              <span>list materi</span>
+            </a>
           </li>
-          <!-- Add more links as needed -->
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2  text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-holding">
+              <i class="fa-solid text-sm mr-2 fa-user-tie"></i>
+              <span>list holding</span>  
+            </a>
+          </li>
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-agency">
+              <i class="fa-solid text-sm mr-2 fa-building"></i>
+              <span>list agency</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-advertiser">
+              <i class="fa-solid text-sm mr-2 fa-rectangle-ad"></i>
+              <span>list advertiser</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-brand">
+              <i class="fa-solid text-sm mr-2 fa-copyright"></i>
+              <span>list brand</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-spottype">
+              <i class="fa-solid text-sm mr-2 fa-video"></i>
+              <span>list spottype</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-channel">
+              <i class="fa-solid text-sm mr-2 fa-tv"></i>
+              <span>list channel</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-category">
+              <i class="fa-solid text-sm mr-2 fa-layer-group"></i>
+              <span>list category</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-settings">
+              <i class="fa-solid text-sm mr-2 fa-wrench"></i>
+              <span>list settings</span>
+            </a>
+          </li>
         </ul>
       </li>
       <!-- end link -->
@@ -42,8 +103,8 @@
     <div class="mt-auto">
       <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button type="submit" class="w-full py-2 px-4 text-gray-700 hover:text-white bg-red-600 hover:bg-red-700 rounded focus:outline-none focus:shadow-outline">
-          <i class="fad fa-sign-out-alt text-xs mr-2"></i>
+        <button type="submit" class="w-full text-center py-2 px-4 text-gray-700 hover:scale-105 hover:-translate-y-1 transform transition duration-300 hover:bg-gray300 rounded focus:outline-none focus:shadow-outline">
+          <i class="fad fa-sign-out-alt mr-1"></i>
           Logout
         </button>
       </form>
@@ -53,56 +114,75 @@
 </div>
 <!-- end sidebar -->
 
+
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  var btn = document.getElementById('sliderBtn');
-  var sideBar = document.getElementById('sideBar');
-  var listIcon = document.getElementById('list-icon');
-  var mainContent = document.getElementById('mainContent');
-
-  // Toggle sidebar
-  btn.addEventListener('click', function() {
-      if (sideBar.classList.contains('hidden')) {
-          // Show sidebar with slideInLeft animation
-          sideBar.classList.remove('hidden');
-          sideBar.classList.add('flex', 'animate__slideInUp');
-          sideBar.classList.remove('animate__slideOutDown');
-          mainContent.classList.add('ml-64'); // shift content right
-      } else {
-          // Hide sidebar with slideOutLeft animation
-          sideBar.classList.remove('animate__slideInUp');
-          sideBar.classList.add('animate__slideOutDown');
-          mainContent.classList.remove('ml-64'); // reset content shift
-          // Ensure the sidebar is hidden after the animation ends
-          sideBar.addEventListener('animationend', function() {
-              if (sideBar.classList.contains('animate__slideOutDown')) {
-                  sideBar.classList.add('hidden');
-                  sideBar.classList.remove('flex');
-              }
-          }, { once: true });
-      }
-      // Toggle icon
-      listIcon.classList.toggle('fa-list-ul');
-      listIcon.classList.toggle('fa-xmark');
-      listIcon.classList.toggle('fa-solid');
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('sliderBtn');
+    var sideBar = document.getElementById('sideBar');
+    var listIcon = document.getElementById('list-icon');
+    var mainContent = document.getElementById('mainContent');
+  
+    // Toggle sidebar
+    btn.addEventListener('click', function() {
+        if (sideBar.classList.contains('hidden')) {
+            sideBar.classList.remove('hidden');
+            sideBar.classList.add('flex', 'animate__slideInLeft');
+            sideBar.classList.remove('animate__slideOutLeft');
+            mainContent.classList.add('ml-64'); // shift content right
+        } else {
+            sideBar.classList.remove('animate__slideInLeft');
+            sideBar.classList.add('animate__slideOutLeft');
+            mainContent.classList.remove('ml-64'); // reset content shift
+            sideBar.addEventListener('animationend', function() {
+                if (sideBar.classList.contains('animate__slideOutLeft')) {
+                    sideBar.classList.add('hidden');
+                    sideBar.classList.remove('flex');
+                }
+            }, { once: true });
+        }
+        // Toggle icon
+        listIcon.classList.toggle('fa-list-ul');
+        listIcon.classList.toggle('fa-xmark');
+        listIcon.classList.toggle('fa-solid');
+        listIcon.classList.toggle('mb-3');
+    });
+  
+    // DropLeft toggle inside sidebar
+    document.querySelectorAll('#sidebar-dropLeft-toggle').forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        var parent = item.closest('.group');
+        if (parent.classList.contains('selected')) {
+          parent.classList.remove('selected');
+        } else {
+          document.querySelectorAll('#sidebar-dropLeft-toggle').forEach(function(i) {
+            i.closest('.group').classList.remove('selected');
+          });
+          parent.classList.add('selected');
+        }
+      });
+    });
   });
 
-  // Dropdown toggle inside sidebar
-  document.querySelectorAll('#sidebar-dropdown-toggle').forEach(function(item) {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      var parent = item.closest('.group');
-      if (parent.classList.contains('selected')) {
-        parent.classList.remove('selected');
-      } else {
-        document.querySelectorAll('#sidebar-dropdown-toggle').forEach(function(i) {
-          i.closest('.group').classList.remove('selected');
-        });
-        parent.classList.add('selected');
-      }
+  document.addEventListener('DOMContentLoaded', () => {
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  const navbarTitle = document.getElementById('navbarTitle');
+
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      // Dapatkan nilai data-title dari link yang diklik
+      const newTitle = link.getAttribute('data-title');
+      
+      // Ubah teks di navbar
+      navbarTitle.textContent = newTitle;
     });
   });
 });
-</script>
+
+  </script>
+
+  
+
+  
 @endpush
