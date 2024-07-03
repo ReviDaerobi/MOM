@@ -26,10 +26,7 @@
 
 @section('konten')
 
-<div class="p-4 mb-6 ml-10 text-sm text-blue-700 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
-    <span class="font-medium" id="breadcrumb">Dashboard</span>
-    <span id="breadcrumbPage"></span>
-</div>
+{{ Breadcrumbs::render() }}
 
 @if(session('success'))
         <div class="alert alert-success mt-4">

@@ -1,4 +1,4 @@
-<div id="sideBar" class="mt-5 mb-10 relative hidden flex-col bg-white border border-gray-300 p-7 flex-none  md:z-30 md:shadow-xl animate__animated sidebar-height">
+<div id="sideBar" class="mt-5 mb-10 relative hidden flex-col bg-white border border-gray-300 p-7 flex-none  md:z-30 md:shadow-xl animate__animated h-full md:h-auto">
   <!-- Profile Component -->
   <div class="flex items-center mb-6">
     <div class="w-12 h-12 bg-gray-200 flex-shrink-0">
