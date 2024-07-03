@@ -23,6 +23,10 @@ use Yajra\DataTables\Facades\DataTables;
 class DashboardController extends Controller
 {
 
+    public function TestDash() {
+        return view('dashboard.test');
+    }
+
     // list user
     public function indexListUser(Request $request) {
 

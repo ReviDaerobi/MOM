@@ -1,4 +1,4 @@
-<div id="sideBar" class="mt-5 mb-10 relative hidden flex flex-col bg-white border border-gray-300 p-7 flex-none w-64 md:fixed md:top-0 md:left-0 md:z-30 md:shadow-xl animate__animated sidebar-height">
+<div id="sideBar" class="mt-5 mb-10 relative hidden flex-col bg-white border border-gray-300 p-7 flex-none  md:z-30 md:shadow-xl animate__animated sidebar-height">
   <!-- Profile Component -->
   <div class="flex items-center mb-6">
     <div class="w-12 h-12 bg-gray-200 flex-shrink-0">
@@ -22,7 +22,7 @@
         </a>
         <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropLeft">
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300 sidebar-link" data-title="Parameter" href="/list-flagrate">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300 sidebar-link" data-title="Parameter" href="/list-flagrate">
               <i class="fa-solid text-sm mr-2 fa-money-bill"></i>
               <span>list flagrate</span>
             </a>
@@ -37,61 +37,61 @@
         </a>
         <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropLeft">
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300 sidebar-link" data-title="Master" href="/list-user">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300 sidebar-link" data-title="Master" href="/list-user">
               <i class="fa-solid fa-user text-xs mr-2"></i>
               <span>List User</span>
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2  text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="/list-materi">
+            <a class="text-gray-600 py-2 px-2 ml-2  text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="/list-materi">
               <i class="fa-solid fa-file-video text-xs mr-2"></i>
               <span>list materi</span>
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2  text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-holding">
+            <a class="text-gray-600 py-2 px-2 ml-2  text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-holding">
               <i class="fa-solid text-sm mr-2 fa-user-tie"></i>
               <span>list holding</span>  
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-agency">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-agency">
               <i class="fa-solid text-sm mr-2 fa-building"></i>
               <span>list agency</span>
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-advertiser">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-advertiser">
               <i class="fa-solid text-sm mr-2 fa-rectangle-ad"></i>
               <span>list advertiser</span>
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-brand">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-brand">
               <i class="fa-solid text-sm mr-2 fa-copyright"></i>
               <span>list brand</span>
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-spottype">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-spottype">
               <i class="fa-solid text-sm mr-2 fa-video"></i>
               <span>list spottype</span>
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-channel">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-channel">
               <i class="fa-solid text-sm mr-2 fa-tv"></i>
               <span>list channel</span>
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-category">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-category">
               <i class="fa-solid text-sm mr-2 fa-layer-group"></i>
               <span>list category</span>
             </a>
           </li>
           <li class="mb-3">
-            <a class="text-gray-600 py-2 px-4 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-settings">
+            <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" href="list-settings">
               <i class="fa-solid text-sm mr-2 fa-wrench"></i>
               <span>list settings</span>
             </a>
@@ -103,7 +103,7 @@
     <div class="mt-auto">
       <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button type="submit" class="w-full text-center py-2 px-4 text-gray-700 hover:scale-105 hover:-translate-y-1 transform transition duration-300 hover:bg-gray300 rounded focus:outline-none focus:shadow-outline">
+        <button type="submit" class="w-full text-center py-2 px-2 text-gray-700 hover:scale-105 hover:-translate-y-1 transform transition duration-300 hover:bg-gray300 rounded focus:outline-none focus:shadow-outline">
           <i class="fad fa-sign-out-alt mr-1"></i>
           Logout
         </button>
@@ -129,7 +129,6 @@
             sideBar.classList.remove('hidden');
             sideBar.classList.add('flex', 'animate__slideInLeft');
             sideBar.classList.remove('animate__slideOutLeft');
-            mainContent.classList.add('ml-64'); // shift content right
         } else {
             sideBar.classList.remove('animate__slideInLeft');
             sideBar.classList.add('animate__slideOutLeft');
@@ -176,6 +175,7 @@
       
       // Ubah teks di navbar
       navbarTitle.textContent = newTitle;
+      breadcrumbPage.textContent = ` / ${newTitle}`;
     });
   });
 });

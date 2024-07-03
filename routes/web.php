@@ -24,6 +24,7 @@ Route::get('/', function () {
 // Login
 
 Route::post('/login', [LoginController::class, 'Login'])->name('login');
+Route::get('/test', [DashboardController::class, 'TestDash']);
 
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

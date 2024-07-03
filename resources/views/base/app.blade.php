@@ -44,12 +44,6 @@
   height: calc(100vh - 4rem); /* Adjust '4rem' based on the actual height of your navbar */
 }
 
-@media (min-width: 768px) {
-  main {
-    margin-left: 16rem; /* 64px sidebar width */
-  }
-}
-
 /* Adjustments for smaller screens */
 @media (max-width: 767px) {
   #sideBar {
@@ -76,14 +70,21 @@
   <header>
     @yield('header')
   </header>
-  <div class="h-screen flex flex-row flex-wrap">
+  <div class="h-full flex w-full flex-row">
     <section class="ml-2">
 
       @yield('sidebar')
     </section>
-    <main class="flex-grow transition-all duration-300 overflow-auto" id="mainContent">
+    <main class=" grow transition-all duration-300 overflow-auto" id="mainContent">
 
-        @yield('konten')
+       <!-- Breadcrumb section -->
+       <div class="mb-4">
+        @yield('breadcrumb')
+    </div>
+ <!-- Main content -->
+ <div>
+  @yield('konten')
+</div>
       </main>
   </div>
 
