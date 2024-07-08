@@ -129,14 +129,37 @@ $(document).ready(function() {
             $('.dt-search').prepend(button);
         }
     });
+    
 
-    // Edit button functionality
-    $(document).on('click', '.edit', function(){
-        var tr = $(this).closest('tr');
-        var row = table.row(tr);
-        var data = row.data();
-        tr.html('<td><input type="text" id="editNama" value="' + data.username + '"></td><td><input type="text" id="editAlamat" value="' + data.fullname + '"></td><td><input type="text" id="editTelepon" value="' + data.posisi + '"></td><td><button class="save py-4 px-12 rounded bg-successColor text-white text-xl" data-id="' + data.id + '">Save</button></td>');
-    });
+    var originalData;
+        $(document).on('click', '.edit', function(){
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+            var data = row.data();
+            originalData = {...data}; // Store original data
+            tr.html(`
+                <td><input type="text" id="editNama" value="${data.username}" class="edit-input"></td>
+                <td><input type="text" id="editAlamat" value="${data.fullname}" class="edit-input"></td>
+                <td><input type="text" id="editTelepon" value="${data.posisi}" class="edit-input"></td>
+                <td>
+                    <button class="save py-4 px-12 rounded bg-successColor text-white text-xl" data-id="${data.id}">Save</button>
+                    <button class="cancel py-4 px-12 rounded bg-red-600 text-white text-xl">Cancel</button>
+                </td>
+            `);
+            $('.edit-input').first().focus();
+        });
+
+        $(document).on('keydown', '.edit-input', function(e) {
+            if (e.key === 'Enter') {
+                var inputs = $('.edit-input');
+                var idx = inputs.index(this);
+                if (idx === inputs.length - 1) {
+                    inputs[idx].blur();
+                } else {
+                    inputs[idx + 1].focus();
+                }
+            }
+        });
 
     // Save button functionality
     $(document).on('click', '.save', function(){
@@ -159,6 +182,12 @@ $(document).ready(function() {
             }
         });
     });
+
+    $(document).on('click', '.cancel', function(){
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+            row.data(originalData).draw(false); // Restore original data
+        });
 
     // Delete button functionality
     $(document).on('click', '.show-alert-delete-box', function(event){
