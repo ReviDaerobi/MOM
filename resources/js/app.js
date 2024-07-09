@@ -1,4 +1,5 @@
 import 'tailwindcss-animate';
+import 'flowbite';
 
 import Swiper from 'swiper/bundle';
 

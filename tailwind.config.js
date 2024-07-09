@@ -16,6 +16,8 @@ module.exports = {
       white: "#ffffff",
       gray300: "#d1d5db",
       gray600: "#6b7280",
+      gray1: "#858e96",
+      gray2: "#60696b"
 
     },
     extend: {
@@ -45,7 +47,8 @@ module.exports = {
     },
   },
   plugins: [
-    
-  ]
+    require('flowbite/plugin'),
+    "prettier-plugin-tailwindcss"
+  ],
 }
 
