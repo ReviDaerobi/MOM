@@ -16,6 +16,7 @@ use App\Models\List_Settings;
 use App\Models\List_SpotType;
 use App\Models\List_User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Yajra\DataTables\Contracts\DataTable;
 use Yajra\DataTables\Facades\DataTables;
@@ -52,14 +53,25 @@ class DashboardController extends Controller
     }
 
     public function addData(Request $request)
-{
-    $data = new List_User;
-    $data->username = $request->username;
-    $data->fullname = $request->fullname;
-    $data->posisi = $request->posisi;
-    $data->save();
-    return response()->json(['success'=>'Data added successfully.']);
-}
+    {
+        $data = new List_User;
+        $data->username = $request->username;
+        $data->password = bcrypt($request->password);
+        $data->fullname = $request->fullname;
+        $data->posisi = $request->posisi;
+        $data->stasiuntvid = $request->stasiun_tv;
+        $data->level = $request->level;
+        $data->createdBy = Auth::user()->username;
+        $data->createddate = now();
+        $data->userAs = $request->userAs;
+        $data->agencies_commision = $request->agencies_commission;
+        $data->AgenciesToBeHold = $request->agencies_to_be_hold;
+        $data->AgenciesToBeHoldName = $request->agencies_to_be_hold_name;
+        $data->usernameupdate = 'test';
+        $data->profileLink = 'test';
+        $data->save();
+        return response()->json(['success' => 'Data added successfully.']);
+    }
 
     public function updateData(Request $request, $id)
 {

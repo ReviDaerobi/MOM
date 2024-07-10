@@ -25,61 +25,108 @@
 </div>
 
   <!-- Modal -->
-  <div x-data="{ open: false }" @keydown.escape.window="open = false" x-init="
-  () => {
-      $watch('open', value => {
-          if (value) {
-              $refs.modalContainer.style.display = 'block';
-              gsap.fromTo('.modal-container', { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power4.out' });
-          } else {
-              gsap.to('.modal-container', { y: 100, opacity: 0, duration: 0.5, ease: 'power4.in', onComplete: () => $refs.modalContainer.style.display = 'none' });
-          }
-      });
-  }"
+<div x-data="{ open: false }" @keydown.escape.window="open = false" x-init="
+() => {
+    $watch('open', value => {
+        if (value) {
+            $refs.modalContainer.style.display = 'block';
+            gsap.fromTo('.modal-container', { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power4.out' });
+        } else {
+            gsap.to('.modal-container', { y: 100, opacity: 0, duration: 0.5, ease: 'power4.in', onComplete: () => $refs.modalContainer.style.display = 'none' });
+        }
+    });
+}"
 >
-
-  <div x-show="open" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
-          <div class="modal-container inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" x-ref="modalContainer">
-              <div class="bg-white px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
-                  <div class="sm:flex sm:items-start">
-                      <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                          <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                              Tambah Data
-                          </h3>
-                          <div class="mt-2">
-                              <form id="addForm">
-                                  @csrf
-                                  <div class="form-group mb-4">
-                                      <label class="block text-sm font-medium text-gray-700">Nama:</label>
-                                      <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addNama" name="add1">
-                                  </div>
-                                  <div class="form-group mb-4">
-                                      <label class="block text-sm font-medium text-gray-700">Alamat:</label>
-                                      <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAlamat" name="add2">
-                                  </div>
-                                  <div class="form-group mb-4">
-                                      <label class="block text-sm font-medium text-gray-700">Telepon:</label>
-                                      <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addTelepon" name="add3">
-                                  </div>
-                                  <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">Tambah</button>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                  <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
-                      Close
-                  </button>
-              </div>
-          </div>
-      </div>
-  </div>
+<div x-show="open" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+        <div class="modal-container inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" x-ref="modalContainer">
+            <div class="bg-white px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            Tambah Data
+                        </h3>
+                        <div class="mt-2">
+                            <form id="addForm">
+                                @csrf
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Username:</label>
+                                    <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUsername" name="username">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Password:</label>
+                                    <input type="password" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPassword" name="password">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Full Name:</label>
+                                    <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addFullname" name="fullname">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Posisi:</label>
+                                    <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPosisi" name="posisi">
+                                        <option value="admin">Admin</option>
+                                        <option value="sales admin">Sales Admin</option>
+                                        <option value="agencies">Agencies</option>
+                                        <option value="billing">Billing</option>
+                                        <option value="client">Client</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Stasiun TV:</label>
+                                    <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addStasiunTV" name="stasiun_tv">
+                                        <option value="mnctv">MNCTV</option>
+                                        <option value="rcti">RCTI</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Level:</label>
+                                    <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addLevel" name="level">
+                                        <option value="admin">Admin</option>
+                                        <option value="sales admin">Sales Admin</option>
+                                        <option value="agencies">Agencies</option>
+                                        <option value="billing">Billing</option>
+                                        <option value="client">Client</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">User As:</label>
+                                    <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUserAs" name="userAs">
+                                        <option value="admin">Admin</option>
+                                        <option value="tv">TV</option>
+                                        <option value="agencies">Agencies</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Agencies Commission:</label>
+                                    <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesCommission" name="agencies_commission">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold:</label>
+                                    <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHold" name="agencies_to_be_hold">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold Name:</label>
+                                    <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHoldName" name="agencies_to_be_hold_name">
+                                </div>
+                                <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">Tambah</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 <!-- End Modal -->
+
 @endsection
 
 @push('scripts-datatable')
@@ -90,27 +137,39 @@ $(document).ready(function() {
         document.querySelector('[x-data]').__x.$data.open = true;
     });
 
-    // Handle form submission
-    $('#addForm').on('submit', function(e){
-        e.preventDefault();
-        var username = $('#addNama').val();
-        var fullname = $('#addAlamat').val();
-        var posisi = $('#addTelepon').val();
-        $.ajax({
-            type: 'POST',
-            url: '/addData',
-            data: {
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-                'username': username,
-                'fullname': fullname,
-                'posisi': posisi
-            },
-            success: function(response){
-                alert('Data Added');
-                location.reload();
-            }
-        });
+   // Handle form submission
+$('#addForm').on('submit', function(e) {
+    e.preventDefault();
+    
+    var formData = {
+        '_token': $('meta[name="csrf-token"]').attr('content'),
+        'username': $('#addUsername').val(),
+        'password': $('#addPassword').val(),
+        'fullname': $('#addFullname').val(),
+        'posisi': $('#addPosisi').val(),
+        'stasiuntvid': $('#addStasiunTV').val(),
+        'level': $('#addLevel').val(),
+        'userAs': $('#addUserAs').val(),
+        'agencies_commision': $('#addAgenciesCommission').val(),
+        'AgenciesToBeHold': $('#addAgenciesToBeHold').val(),
+        'AgenciesToBeHoldName': $('#addAgenciesToBeHoldName').val()
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/addData',
+        data: formData,
+        success: function(response) {
+            alert('Data Added');
+            location.reload();
+        },
+        error: function(xhr) {
+            console.error(xhr.responseText); // Log any error
+            alert('Failed to add data');
+        }
     });
+});
+
 
     // Initialize DataTable
     var table = $('#example').DataTable({

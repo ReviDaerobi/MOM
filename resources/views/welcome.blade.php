@@ -22,7 +22,6 @@
             <img src="./src/img/file.png" alt="3D Vector" style="width: 35rem; height:35rem" class="md:w-80 md:h-80">
         </div>
     </div>
-
     <!-- Right Side -->
     <div class="flex items-center justify-center w-1/2">
         <div class="w-1/2 lg:w-full md:w-full p-8">
