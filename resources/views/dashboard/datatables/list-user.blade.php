@@ -11,9 +11,14 @@
             <table id="example" class="ui display cell-border nowrap unstackable " style="width:100%">
                 <thead class="" style="width: 100%">
                     <tr>
-                        <th>username</th>
-                        <th>fullname</th>
-                        <th>posisi</th>
+                        <th>Username</th>
+                        <th>Fullname</th>
+                        <th>Company</th>
+                        <th>Position</th>
+                        <th>Level</th>
+                        <th>Type</th>
+                        <th>Created By</th>
+                        <th>Create Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -24,7 +29,7 @@
     </div>
 </div>
 
-  <!-- Modal -->
+ <!-- Modal -->
 <div x-data="{ open: false }" @keydown.escape.window="open = false" x-init="
 () => {
     $watch('open', value => {
@@ -37,95 +42,98 @@
     });
 }"
 >
-<div x-show="open" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
-        <div class="modal-container inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" x-ref="modalContainer">
-            <div class="bg-white px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div class="sm:flex sm:items-start">
-                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                            Tambah Data
-                        </h3>
-                        <div class="mt-2">
-                            <form id="addForm">
-                                @csrf
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Username:</label>
-                                    <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUsername" name="username">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Password:</label>
-                                    <input type="password" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPassword" name="password">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Full Name:</label>
-                                    <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addFullname" name="fullname">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Posisi:</label>
-                                    <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPosisi" name="posisi">
-                                        <option value="admin">Admin</option>
-                                        <option value="sales admin">Sales Admin</option>
-                                        <option value="agencies">Agencies</option>
-                                        <option value="billing">Billing</option>
-                                        <option value="client">Client</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Stasiun TV:</label>
-                                    <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addStasiunTV" name="stasiun_tv">
-                                        <option value="mnctv">MNCTV</option>
-                                        <option value="rcti">RCTI</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Level:</label>
-                                    <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addLevel" name="level">
-                                        <option value="admin">Admin</option>
-                                        <option value="sales admin">Sales Admin</option>
-                                        <option value="agencies">Agencies</option>
-                                        <option value="billing">Billing</option>
-                                        <option value="client">Client</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">User As:</label>
-                                    <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUserAs" name="userAs">
-                                        <option value="admin">Admin</option>
-                                        <option value="tv">TV</option>
-                                        <option value="agencies">Agencies</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Agencies Commission:</label>
-                                    <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesCommission" name="agencies_commission">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold:</label>
-                                    <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHold" name="agencies_to_be_hold">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold Name:</label>
-                                    <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHoldName" name="agencies_to_be_hold_name">
-                                </div>
-                                <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">Tambah</button>
-                            </form>
+    <div x-show="open" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+            <div class="modal-container inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full" x-ref="modalContainer">
+                <div class="bg-white px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Tambah Data
+                            </h3>
+                            <div class="mt-2">
+                                <form id="addForm">
+                                    @csrf
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Username:</label>
+                                            <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUsername" name="username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Password:</label>
+                                            <input type="password" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPassword" name="password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Full Name:</label>
+                                            <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addFullname" name="fullname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Posisi:</label>
+                                            <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPosisi" name="posisi">
+                                                <option value="admin">Admin</option>
+                                                <option value="sales admin">Sales Admin</option>
+                                                <option value="agencies">Agencies</option>
+                                                <option value="billing">Billing</option>
+                                                <option value="client">Client</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Stasiun TV:</label>
+                                            <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addStasiunTV" name="stasiun_tv">
+                                                <option value="mnctv">MNCTV</option>
+                                                <option value="rcti">RCTI</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Level:</label>
+                                            <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addLevel" name="level">
+                                                <option value="admin">Admin</option>
+                                                <option value="sales admin">Sales Admin</option>
+                                                <option value="agencies">Agencies</option>
+                                                <option value="billing">Billing</option>
+                                                <option value="client">Client</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">User As:</label>
+                                            <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUserAs" name="userAs">
+                                                <option value="admin">Admin</option>
+                                                <option value="tv">TV</option>
+                                                <option value="agencies">Agencies</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Agencies Commission:</label>
+                                            <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesCommission" name="agencies_commission">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold:</label>
+                                            <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHold" name="agencies_to_be_hold">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold Name:</label>
+                                            <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHoldName" name="agencies_to_be_hold_name">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="w-full mt-4 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">Tambah</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
-                    Close
-                </button>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
+                        Close
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 <!-- End Modal -->
+
 
 @endsection
 
@@ -180,7 +188,12 @@ $('#addForm').on('submit', function(e) {
         columns: [
             { data: 'username', name: 'username' },
             { data: 'fullname', name: 'fullname' },
+            { data: 'stasiuntvid', name: 'stasiuntvid' },
             { data: 'posisi', name: 'posisi' },
+            { data: 'level', name: 'level' },
+            { data: 'userAs', name: 'userAs' },
+            { data: 'createdby', name: 'createdby' },
+            { data: 'createddate', name: 'createddate' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ],
         initComplete: function () {

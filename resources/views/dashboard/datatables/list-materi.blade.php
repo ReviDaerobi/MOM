@@ -12,9 +12,16 @@
         <table id="example" class="ui display cell-border nowrap unstackable " style="width:100%">
             <thead class="" style="width: 100%">
                 <tr>
-                    <th>version name</th>
-                    <th>duration</th>
-                    <th>type_iklan</th>
+                    <th>Code Brand</th>
+                    <th>Nama Brand</th>
+                    <th>Nama Versi</th>
+                    <th>Duration</th>
+                    <th>Type Iklan</th>
+                    <th>Channel</th>
+                    <th>Barcode</th>
+                    <th>Expire Date</th>
+                    <th>Created By</th>
+                    <th>Created Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -116,9 +123,16 @@
             responsive: true,
             ajax: "/list-materi", // Ubah route ke route yang sesuai dengan data mahasiswa
             columns: [
+                {data: 'brand_code', name: 'brand_code'},
+                {data: 'brand_name', name: 'brand_name'},
                 {data: 'version_name', name: 'version_name'},
                 {data: 'duration', name: 'duration'},
                 {data: 'type_iklan', name: 'type_iklan'},
+                {data: 'channel', name: 'channel'},
+                {data: 'barcode', name: 'barcode'},
+                {data: 'expire_date', name: 'expire_date'},
+                {data: 'created_by', name: 'created_by'},
+                {data: 'created_date', name: 'created_date'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {

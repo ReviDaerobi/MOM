@@ -23,7 +23,7 @@ return [
     |
     */
 
-  'view' => 'vendor/breadcrumbs/tailwind',
+    'view' => 'vendor/breadcrumbs/tailwind',
 
     /*
     |--------------------------------------------------------------------------
