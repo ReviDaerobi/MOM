@@ -16,4 +16,9 @@ Lalu
 
 Tambahan FlowBite
 
-1. Install FlowBite 
+1. npm install saja di root folder
+
+Tambahan Export
+1. composer require maatwebsite/excel di root project
+setelah beres download install
+2. php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" di root project
