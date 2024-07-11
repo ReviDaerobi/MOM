@@ -142,7 +142,7 @@
             var created_date = $('#addCreatedDate').val();
         
             $.ajax({
-                url: "{{ route('holdings.store') }}",
+                url: "/addDataHolding",
                 type:"POST",
                 data:{
                     "_token": "{{ csrf_token() }}",

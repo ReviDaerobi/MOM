@@ -19,6 +19,19 @@ Tambahan FlowBite
 1. npm install saja di root folder
 
 Tambahan Export
+
+Pertama Ekstension gd harus aktif 
+
+ke php.ini ( kalau pakai xampp ke config bagian apache terus ada php.ini)
+searching  ;extension=gd
+
+lalu hapus ; 
+
+dan save 
+
+selanjutnya
+
 1. composer require maatwebsite/excel di root project
+dan composer update di root project 
 setelah beres download install
 2. php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" di root project
