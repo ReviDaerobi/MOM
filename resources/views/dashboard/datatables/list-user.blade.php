@@ -212,7 +212,13 @@ $('#addForm').on('submit', function(e) {
             tr.html(`
                 <td><input type="text" id="editNama" value="${data.username}" class="edit-input"></td>
                 <td><input type="text" id="editAlamat" value="${data.fullname}" class="edit-input"></td>
+                <td><input type="text" id="editNama" value="${data.stasiuntvid}" class="edit-input"></td>
                 <td><input type="text" id="editTelepon" value="${data.posisi}" class="edit-input"></td>
+                <td><input type="text" id="editNama" value="${data.level}" class="edit-input"></td>
+                <td><input type="text" id="editNama" value="${data.userAs}" class="edit-input"></td>
+                <td><input type="text" id="editNama" value="${data.createdby}" class="edit-input"></td>
+                <td><input type="text" id="editNama" value="${data.createddate}" class="edit-input"></td>
+            
                 <td>
                     <button class="save py-4 px-12 rounded bg-successColor text-white text-xl" data-id="${data.id}">Save</button>
                     <button class="cancel py-4 px-12 rounded bg-red-600 text-white text-xl">Cancel</button>

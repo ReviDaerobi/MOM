@@ -13,3 +13,7 @@ Tambahan Breadcrumbs
 1. composer require diglactic/laravel-breadcrumbs di root project
 Lalu
 2. php artisan vendor:publish --tag=breadcrumbs-config di root project 
+
+Tambahan FlowBite
+
+1. Install FlowBite 
