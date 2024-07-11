@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ExcelCSVController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Dashboard
 Route::middleware(['auth'])->group(function () {
+
+// Print
+Route::get('/excel-csv-file', [ExcelCSVController::class, 'index']);
+Route::post('/import-excel-csv-file', [ExcelCSVController::class, 'importExcelCSV']);
+Route::get('/export-excel-csv-file/{slug}', [ExcelCSVController::class, 'exportExcelCSV']); 
+
 // list-user
 Route::get('/list-user', [DashboardController::class,'indexListUser'])->name('listUser');
 Route::post('/delete-data/{id}', [DashboardController::class,'delete']);

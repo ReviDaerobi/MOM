@@ -197,7 +197,11 @@ $('#addForm').on('submit', function(e) {
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ],
         initComplete: function () {
+            var buttonIm = '<a href="/export-excel-csv-file/xlsx" class="bg-green-600 text-white p-3 m-3">Export Excel</a>';
+            var buttonEk = '<a href="/export-excel-csv-file/csv" class="bg-green-600 text-white p-3 m-3">Export CSV</a></h2>';
             var button = '<button class="bg-gray600 text-white md:mb-3 rounded py-3 px-3 hover:scale-105 hover:-translate-y-1 transform transition duration-300 mr-3" id="addButton">Tambah Data</button>';
+            $('.dt-search').prepend(buttonEk);
+            $('.dt-search').prepend(buttonIm);
             $('.dt-search').prepend(button);
         }
     });
@@ -212,13 +216,7 @@ $('#addForm').on('submit', function(e) {
             tr.html(`
                 <td><input type="text" id="editNama" value="${data.username}" class="edit-input"></td>
                 <td><input type="text" id="editAlamat" value="${data.fullname}" class="edit-input"></td>
-                <td><input type="text" id="editNama" value="${data.stasiuntvid}" class="edit-input"></td>
                 <td><input type="text" id="editTelepon" value="${data.posisi}" class="edit-input"></td>
-                <td><input type="text" id="editNama" value="${data.level}" class="edit-input"></td>
-                <td><input type="text" id="editNama" value="${data.userAs}" class="edit-input"></td>
-                <td><input type="text" id="editNama" value="${data.createdby}" class="edit-input"></td>
-                <td><input type="text" id="editNama" value="${data.createddate}" class="edit-input"></td>
-            
                 <td>
                     <button class="save py-4 px-12 rounded bg-successColor text-white text-xl" data-id="${data.id}">Save</button>
                     <button class="cancel py-4 px-12 rounded bg-red-600 text-white text-xl">Cancel</button>
