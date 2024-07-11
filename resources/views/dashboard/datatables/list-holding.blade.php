@@ -183,6 +183,110 @@
                 }
             });
         });
+        var table = $('#example').DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
+        ajax: "/list-holding", // Ubah route ke route yang sesuai dengan data mahasiswa
+        columns: [
+            
+            {data: 'n_holding', name: 'n_holding'},
+            {data: 'description', name: 'description'},
+            {data: 'description', name: 'description'},
+            {data: 'description', name: 'description'},
+            {data: 'description', name: 'description'},
+            {data: 'description', name: 'description'},
+            {data: 'description', name: 'description'},
+            {data: 'description', name: 'description'},
+            {data: 'description', name: 'description'},
+            {data: 'createdby', name: 'createdby'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ],
+        initComplete: function () {
+            var button = '<button class="btn btn-primary" id="addButton">Tambah Data</button>';
+            $('.dt-search').prepend(button);
+        }
     });
+    
+    var originalData;
+        $(document).on('click', '.edit', function(){
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+            var data = row.data();
+            originalData = {...data}; // Store original data
+            tr.html(`
+                <td><input type="text" id="editn_holding" value="${data.n_holding}" class="edit-input"></td>
+                <td><input type="text" id="editdescription" value="${data.description}" class="edit-input"></td>
+                <td><input type="text" id="editcreatedby" value="${data.createdby}" class="edit-input"></td>
+                <td>
+                    <button class="save py-4 px-12 rounded bg-successColor text-white text-xl" data-id="${data.id}">Save</button>
+                    <button class="cancel py-4 px-12 rounded bg-red-600 text-white text-xl">Cancel</button>
+                </td>
+            `);
+            $('.edit-input').first().focus();
+            document.querySelector('[x-data]').__x.$data.open = true;
+        });
+
+        $(document).on('keydown', '.edit-input', function(e) {
+            if (e.key === 'Enter') {
+                var inputs = $('.edit-input');
+                var idx = inputs.index(this);
+                if (idx === inputs.length - 1) {
+                    inputs[idx].blur();
+                } else {
+                    inputs[idx + 1].focus();
+                }
+            }
+        });
+    
+    $(document).on('click', '.save', function(){
+        var id = $(this).data('id');
+        var n_holding = $('#editn_holding').val();
+        var description = $('#editdescription').val();
+        var createdby = $('#editcreatedby').val();
+        $.ajax({
+            type: 'POST',
+            url: '/updateDataHolding/'+id,
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'n_holding': n_holding,
+                'description': description,
+                'createdby': createdby
+            },
+            success: function(response){
+                alert('Data Updated');
+                location.reload();
+            }
+        });
+    });
+
+    $(document).on('click', '.cancel', function(){
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+            row.data(originalData).draw(false); // Restore original data
+        });
+                   
+        $(document).on('click', '.show-alert-delete-box', function(event){
+            var id = $(this).data('id');
+    
+            event.preventDefault();
+            swal({
+                title: "Are you sure you want to delete this record?",
+                text: "If you delete this, it will be gone forever.",
+                icon: "warning",
+                type: "warning",
+                buttons: ["Cancel","Yes!"],
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $('#deleteForm').attr('action', '/delete-dataHolding/' + id);
+                    $('#deleteForm').submit();
+                    
+    }});
+});
+});
+
 </script>
 @endpush
