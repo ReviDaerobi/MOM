@@ -19,6 +19,7 @@
                         <th>Type</th>
                         <th>Created By</th>
                         <th>Create Date</th>
+                        <th>Updated By</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -30,109 +31,114 @@
 </div>
 
  <!-- Modal -->
-<div x-data="{ open: false }" @keydown.escape.window="open = false" x-init="
-() => {
-    $watch('open', value => {
-        if (value) {
-            $refs.modalContainer.style.display = 'block';
-            gsap.fromTo('.modal-container', { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power4.out' });
-        } else {
-            gsap.to('.modal-container', { y: 100, opacity: 0, duration: 0.5, ease: 'power4.in', onComplete: () => $refs.modalContainer.style.display = 'none' });
-        }
-    });
-}"
->
-    <div x-show="open" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
-            <div class="modal-container inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full" x-ref="modalContainer">
-                <div class="bg-white px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="sm:flex sm:items-start">
-                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                Tambah Data
-                            </h3>
-                            <div class="mt-2">
-                                <form id="addForm">
-                                    @csrf
-                                    <div class="grid grid-cols-3 gap-4">
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Username:</label>
-                                            <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUsername" name="username">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Password:</label>
-                                            <input type="password" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPassword" name="password">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Full Name:</label>
-                                            <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addFullname" name="fullname">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Posisi:</label>
-                                            <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPosisi" name="posisi">
-                                                <option value="admin">Admin</option>
-                                                <option value="sales admin">Sales Admin</option>
-                                                <option value="agencies">Agencies</option>
-                                                <option value="billing">Billing</option>
-                                                <option value="client">Client</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Stasiun TV:</label>
-                                            <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addStasiunTV" name="stasiun_tv">
-                                                <option value="mnctv">MNCTV</option>
-                                                <option value="rcti">RCTI</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Level:</label>
-                                            <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addLevel" name="level">
-                                                <option value="admin">Admin</option>
-                                                <option value="sales admin">Sales Admin</option>
-                                                <option value="agencies">Agencies</option>
-                                                <option value="billing">Billing</option>
-                                                <option value="client">Client</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">User As:</label>
-                                            <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUserAs" name="userAs">
-                                                <option value="admin">Admin</option>
-                                                <option value="tv">TV</option>
-                                                <option value="agencies">Agencies</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Agencies Commission:</label>
-                                            <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesCommission" name="agencies_commission">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold:</label>
-                                            <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHold" name="agencies_to_be_hold">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold Name:</label>
-                                            <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHoldName" name="agencies_to_be_hold_name">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="w-full mt-4 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">Tambah</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Modal -->
+ <div x-data="{ open: false }" @keydown.escape.window="open = false" x-init="
+ () => {
+     $watch('open', value => {
+         if (value) {
+             $refs.modalContainer.style.display = 'block';
+             gsap.fromTo('.modal-container', { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power4.out' });
+         } else {
+             gsap.to('.modal-container', { y: 100, opacity: 0, duration: 0.5, ease: 'power4.in', onComplete: () => $refs.modalContainer.style.display = 'none' });
+         }
+     });
+ }"
+ >
+     <div x-show="open" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+             <div class="modal-container inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full" x-ref="modalContainer">
+                 <div class="bg-white px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
+                     <div class="sm:flex sm:items-start">
+                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                             <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                 Tambah Data
+                             </h3>
+                             <div class="mt-2">
+                                 <form id="addForm">
+                                     @csrf
+                                     <div class="grid grid-cols-3 gap-4">
+                                         <div class="form-group">
+                                             <label class="block text-sm font-medium text-gray-700">Username:</label>
+                                             <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUsername" name="username">
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="block text-sm font-medium text-gray-700">Password:</label>
+                                             <input type="password" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPassword" name="password">
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="block text-sm font-medium text-gray-700">Full Name:</label>
+                                             <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addFullname" name="fullname">
+                                         </div>
+                                     </div>
+                                     <div class="grid grid-cols-3 gap-4 mt-4">
+                                         <div class="form-group border-r pr-4">
+                                             <label class="block text-sm font-medium text-gray-700">Posisi:</label>
+                                             <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addPosisi" name="posisi">
+                                                 <option value="admin">Admin</option>
+                                                 <option value="sales admin">Sales Admin</option>
+                                                 <option value="agencies">Agencies</option>
+                                                 <option value="billing">Billing</option>
+                                                 <option value="client">Client</option>
+                                             </select>
+                                         </div>
+                                         <div class="form-group border-r px-4">
+                                             <label class="block text-sm font-medium text-gray-700">Level:</label>
+                                             <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addLevel" name="level">
+                                                 <option value="admin">Admin</option>
+                                                 <option value="sales admin">Sales Admin</option>
+                                                 <option value="agencies">Agencies</option>
+                                                 <option value="billing">Billing</option>
+                                                 <option value="client">Client</option>
+                                             </select>
+                                         </div>
+                                         <div class="form-group pl-4">
+                                             <label class="block text-sm font-medium text-gray-700">User As:</label>
+                                             <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addUserAs" name="userAs">
+                                                 <option value="admin">Admin</option>
+                                                 <option value="tv">TV</option>
+                                                 <option value="agencies">Agencies</option>
+                                             </select>
+                                         </div>
+                                     </div>
+                                     <div class="grid grid-cols-3 gap-4 mt-4">
+                                         <div class="form-group">
+                                             <label class="block text-sm font-medium text-gray-700">Stasiun TV:</label>
+                                             <select class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addStasiunTV" name="stasiun_tv">
+                                                 <option value="mnctv">MNCTV</option>
+                                                 <option value="rcti">RCTI</option>
+                                             </select>
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="block text-sm font-medium text-gray-700">Agencies Commission:</label>
+                                             <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesCommission" name="agencies_commission">
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold:</label>
+                                             <input type="number" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHold" name="agencies_to_be_hold">
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="block text-sm font-medium text-gray-700">Agencies To Be Hold Name:</label>
+                                             <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHoldName" name="agencies_to_be_hold_name">
+                                         </div>
+                                     </div>
+                                     <button type="submit" class="w-full mt-4 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">Tambah</button>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                     <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
+                         Close
+                     </button>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- End Modal -->
+ 
 
 
 @endsection
@@ -194,14 +200,15 @@ $('#addForm').on('submit', function(e) {
             { data: 'userAs', name: 'userAs' },
             { data: 'createdby', name: 'createdby' },
             { data: 'createddate', name: 'createddate' },
+            { data: 'updatedby', name: 'updatedby' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ],
         initComplete: function () {
             $('.dt-length select').removeClass('dt-input');
-            var buttonIm = '<a href="/export-excel-csv-file/xlsx" class="bg-green-600 text-white p-3 m-3">Export Excel</a>';
+            var buttonIm = '<a href="/export-excel-csv-file/xlsx" class="bg-blue-600 text-white p-3 m-3">Export Excel</a>';
             // var buttonEk = '<a href="/export-excel-csv-file/csv" class="bg-green-600 text-white p-3 m-3">Export CSV</a></h2>';
-            var buttonEk = '<a href="/import-excel-csv-file" class="bg-green-600 text-white p-3 m-3">Import CSV</a></h2>';
-            var button = '<button class="bg-gray600 text-white md:mb-3 rounded py-3 px-3 hover:scale-105 hover:-translate-y-1 transform transition duration-300 mr-3" id="addButton">Tambah Data</button>';
+            var buttonEk = '<a href="/import-excel-csv-file" class="bg-blue-600 text-white p-3 m-3">Import CSV</a></h2>';
+            var button = '<button class="bg-blue-600 text-white md:mb-3 rounded py-3 px-3 hover:scale-105 hover:-translate-y-1 transform transition duration-300 mr-3" id="addButton">Tambah Data</button>';
             $('.dt-search').prepend(buttonEk);
             $('.dt-search').prepend(buttonIm);
             $('.dt-search').prepend(button);
@@ -218,7 +225,10 @@ $('#addForm').on('submit', function(e) {
             tr.html(`
                 <td><input type="text" id="editNama" value="${data.username}" class="edit-input"></td>
                 <td><input type="text" id="editAlamat" value="${data.fullname}" class="edit-input"></td>
+                <td><input type="text" id="editTv" value="${data.stasiuntvid}" class="edit-input"></td>
                 <td><input type="text" id="editTelepon" value="${data.posisi}" class="edit-input"></td>
+                <td><input type="text" id="editLevel" value="${data.level}" class="edit-input"></td>
+                <td><input type="text" id="editUserAs" value="${data.userAs}" class="edit-input"></td>
                 <td>
                     <button class="save py-4 px-12 rounded bg-successColor text-white text-xl" data-id="${data.id}">Save</button>
                     <button class="cancel py-4 px-12 rounded bg-red-600 text-white text-xl">Cancel</button>
@@ -244,7 +254,10 @@ $('#addForm').on('submit', function(e) {
         var id = $(this).data('id');
         var username = $('#editNama').val();
         var fullname = $('#editAlamat').val();
+        var statiunTv = $('#editTv').val();
         var posisi = $('#editTelepon').val();
+        var Level = $('#editLevel').val();
+        var UserAs = $('#editUserAs').val();
         $.ajax({
             type: 'POST',
             url: '/updateData/' + id,
@@ -252,7 +265,10 @@ $('#addForm').on('submit', function(e) {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'username': username,
                 'fullname': fullname,
-                'posisi': posisi
+                'stasiuntvid': statiunTv,
+                'posisi': posisi,
+                'level': Level,
+                'userAs': UserAs,
             },
             success: function(response){
                 alert('Data Updated');

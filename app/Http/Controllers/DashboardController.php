@@ -36,7 +36,7 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-2.5 px-5 rounded text-white bg-blue-600 hover:bg-blue-800" data-id="'.$row->id.'">Edit</button>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -78,7 +78,11 @@ class DashboardController extends Controller
     $data = List_User::find($id);
     $data->username = $request->username;
     $data->fullname = $request->fullname;
+    $data->stasiuntvid = $request->stasiunTv;
     $data->posisi = $request->posisi;
+    $data->level = $request->level;
+    $data->userAs = $request->userAs;
+    $data->updatedby = Auth::user()->username;
     $data->save();
     return response()->json(['success'=>'Data updated successfully.']);
 }
@@ -92,7 +96,7 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-5 px-3 rounded text-white bg-blue-600" data-id="'.$row->id.'">Edit</button>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])

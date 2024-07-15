@@ -1,4 +1,4 @@
-<div id="sideBar" class="mt-5 mb-10 relative hidden flex-col bg-white border border-gray-300 p-7 flex-none  md:z-30 md:shadow-xl animate__animated h-full md:h-auto">
+<div id="sideBar" class="mt-5 mb-10 relative {{ session('just_logged_in') ? 'hidden' : 'flex' }} flex-col bg-white border border-gray-300 p-7 flex-none md:z-30 md:shadow-xl animate__animated h-full md:h-auto ">
   <!-- Profile Component -->
   <div class="flex items-center mb-6">
     <div class="w-12 h-12 bg-gray-200 flex-shrink-0">
@@ -114,21 +114,22 @@
 </div>
 <!-- end sidebar -->
 
-
 @push('scripts')
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
     var btn = document.getElementById('sliderBtn');
     var sideBar = document.getElementById('sideBar');
     var listIcon = document.getElementById('list-icon');
     var mainContent = document.getElementById('mainContent');
-  
+
     // Toggle sidebar
     btn.addEventListener('click', function() {
         if (sideBar.classList.contains('hidden')) {
             sideBar.classList.remove('hidden');
             sideBar.classList.add('flex', 'animate__slideInLeft');
             sideBar.classList.remove('animate__slideOutLeft');
+            listIcon.classList.remove('fa-list-ul');
+            listIcon.classList.add('fa-xmark');
         } else {
             sideBar.classList.remove('animate__slideInLeft');
             sideBar.classList.add('animate__slideOutLeft');
@@ -137,52 +138,53 @@
                 if (sideBar.classList.contains('animate__slideOutLeft')) {
                     sideBar.classList.add('hidden');
                     sideBar.classList.remove('flex');
+                    listIcon.classList.remove('fa-xmark');
+                    listIcon.classList.add('fa-list-ul');
                 }
             }, { once: true });
         }
-        // Toggle icon
-        listIcon.classList.toggle('fa-list-ul');
-        listIcon.classList.toggle('fa-xmark');
-        listIcon.classList.toggle('fa-solid');
-        listIcon.classList.toggle('mb-3');
     });
-  
+
     // DropLeft toggle inside sidebar
     document.querySelectorAll('#sidebar-dropLeft-toggle').forEach(function(item) {
-      item.addEventListener('click', function(e) {
-        e.preventDefault();
-        var parent = item.closest('.group');
-        if (parent.classList.contains('selected')) {
-          parent.classList.remove('selected');
-        } else {
-          document.querySelectorAll('#sidebar-dropLeft-toggle').forEach(function(i) {
-            i.closest('.group').classList.remove('selected');
-          });
-          parent.classList.add('selected');
-        }
-      });
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            var parent = item.closest('.group');
+            if (parent.classList.contains('selected')) {
+                parent.classList.remove('selected');
+            } else {
+                document.querySelectorAll('#sidebar-dropLeft-toggle').forEach(function(i) {
+                    i.closest('.group').classList.remove('selected');
+                });
+                parent.classList.add('selected');
+            }
+        });
     });
-  });
 
-  document.addEventListener('DOMContentLoaded', () => {
-  const sidebarLinks = document.querySelectorAll('.sidebar-link');
-  const navbarTitle = document.getElementById('navbarTitle');
+    // Check if session variable exists
+    @if(session('just_logged_in'))
+        // Clear session variable
+        @php
+            session()->forget('just_logged_in');
+        @endphp
 
-  sidebarLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      // Dapatkan nilai data-title dari link yang diklik
-      const newTitle = link.getAttribute('data-title');
-      
-      // Ubah teks di navbar
-      navbarTitle.textContent = newTitle;
-      breadcrumbPage.textContent = ` / ${newTitle}`;
+        // Sidebar should be hidden initially
+        sideBar.classList.add('hidden');
+        sideBar.classList.remove('flex');
+        listIcon.classList.add('fa-list-ul');
+        listIcon.classList.remove('fa-xmark');
+    @endif
+
+    // Open sidebar when a link is clicked
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sideBar.classList.remove('hidden');
+            sideBar.classList.add('flex', 'animate__slideInLeft');
+            listIcon.classList.remove('fa-list-ul');
+            listIcon.classList.add('fa-xmark');
+        });
     });
-  });
 });
-
-  </script>
-
-  
-
-  
+</script>
 @endpush

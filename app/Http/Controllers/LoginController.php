@@ -47,6 +47,9 @@ class LoginController extends Controller
                     Auth::logout();
             }
         }
+
+          // Set session variable
+        session(['just_logged_in' => true]);
     
         return back()->withErrors([
             'username' => 'The provided credentials do not match our records.',
