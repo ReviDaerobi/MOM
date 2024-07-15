@@ -11,7 +11,7 @@
             <table id="example" class="ui display cell-border nowrap unstackable " style="width:100%">
                 <thead class="" style="width: 100%">
                     <tr>
-                        <th>Username</th>
+                        <th class=" text-center">Username</th>
                         <th>Fullname</th>
                         <th>Company</th>
                         <th>Position</th>
@@ -186,7 +186,7 @@ $('#addForm').on('submit', function(e) {
         responsive: true,
         ajax: "/list-user",
         columns: [
-            { data: 'username', name: 'username' },
+            { data: 'username', name: 'username', className: 'text-center' },
             { data: 'fullname', name: 'fullname' },
             { data: 'stasiuntvid', name: 'stasiuntvid' },
             { data: 'posisi', name: 'posisi' },
@@ -197,8 +197,10 @@ $('#addForm').on('submit', function(e) {
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ],
         initComplete: function () {
+            $('.dt-length select').removeClass('dt-input');
             var buttonIm = '<a href="/export-excel-csv-file/xlsx" class="bg-green-600 text-white p-3 m-3">Export Excel</a>';
-            var buttonEk = '<a href="/export-excel-csv-file/csv" class="bg-green-600 text-white p-3 m-3">Export CSV</a></h2>';
+            // var buttonEk = '<a href="/export-excel-csv-file/csv" class="bg-green-600 text-white p-3 m-3">Export CSV</a></h2>';
+            var buttonEk = '<a href="/import-excel-csv-file" class="bg-green-600 text-white p-3 m-3">Import CSV</a></h2>';
             var button = '<button class="bg-gray600 text-white md:mb-3 rounded py-3 px-3 hover:scale-105 hover:-translate-y-1 transform transition duration-300 mr-3" id="addButton">Tambah Data</button>';
             $('.dt-search').prepend(buttonEk);
             $('.dt-search').prepend(buttonIm);

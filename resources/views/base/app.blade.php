@@ -15,6 +15,13 @@
 <link rel="stylesheet" href="/src/css/loader.css">
 <style>
 
+.dt-column-title {
+  text-align: center;
+}
+.dt-length select {
+    margin-left: 0.5rem;
+}
+
 .group.selected ul {
   display: block !important;
 }
