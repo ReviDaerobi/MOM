@@ -15,6 +15,11 @@
 <link rel="stylesheet" href="/src/css/loader.css">
 <style>
 
+thead tr th span {
+  display: block;
+  text-align: center;
+}
+
 .dt-column-title {
   text-align: center;
 }

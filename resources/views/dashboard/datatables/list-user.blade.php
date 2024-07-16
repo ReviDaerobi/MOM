@@ -9,9 +9,9 @@
             </form>
 
             <table id="example" class="ui display cell-border nowrap unstackable " style="width:100%">
-                <thead class="" style="width: 100%">
+                <thead style="width: 100%">
                     <tr>
-                        <th class=" text-center">Username</th>
+                        <th>Username</th>
                         <th>Fullname</th>
                         <th>Company</th>
                         <th>Position</th>
@@ -145,86 +145,92 @@
 
 @push('scripts-datatable')
 <script type="text/javascript">
-$(document).ready(function() {
-    // Open modal on button click
-    $(document).on('click', '#addButton', function(){
-        document.querySelector('[x-data]').__x.$data.open = true;
-    });
-
-   // Handle form submission
-$('#addForm').on('submit', function(e) {
-    e.preventDefault();
+    $(document).ready(function() {
+        // Open modal on button click
+        $(document).on('click', '#addButton', function(){
+            document.querySelector('[x-data]').__x.$data.open = true;
+        });
     
-    var formData = {
-        '_token': $('meta[name="csrf-token"]').attr('content'),
-        'username': $('#addUsername').val(),
-        'password': $('#addPassword').val(),
-        'fullname': $('#addFullname').val(),
-        'posisi': $('#addPosisi').val(),
-        'stasiuntvid': $('#addStasiunTV').val(),
-        'level': $('#addLevel').val(),
-        'userAs': $('#addUserAs').val(),
-        'agencies_commision': $('#addAgenciesCommission').val(),
-        'AgenciesToBeHold': $('#addAgenciesToBeHold').val(),
-        'AgenciesToBeHoldName': $('#addAgenciesToBeHoldName').val()
-    };
-
-    $.ajax({
-        type: 'POST',
-        url: '/addData',
-        data: formData,
-        success: function(response) {
-            alert('Data Added');
-            location.reload();
-        },
-        error: function(xhr) {
-            console.error(xhr.responseText); // Log any error
-            alert('Failed to add data');
-        }
-    });
-});
-
-
-    // Initialize DataTable
-    var table = $('#example').DataTable({
-        processing: true,
-        serverSide: true,
-        responsive: true,
-        ajax: "/list-user",
-        columns: [
-            { data: 'username', name: 'username', className: 'text-center' },
-            { data: 'fullname', name: 'fullname' },
-            { data: 'stasiuntvid', name: 'stasiuntvid' },
-            { data: 'posisi', name: 'posisi' },
-            { data: 'level', name: 'level' },
-            { data: 'userAs', name: 'userAs' },
-            { data: 'createdby', name: 'createdby' },
-            { data: 'createddate', name: 'createddate' },
-            { data: 'updatedby', name: 'updatedby' },
-            { data: 'action', name: 'action', orderable: false, searchable: false },
-        ],
-        language: {
-            paginate: {
-                first: '<span class=" text-2xl px-2 py-1   rounded-md ">First</span>',
-                last: '<span class="text-2xl px-2 py-1 rounded-md ">Last</span>',
-                next: '<span class=" text-2xl px-2 py-1   rounded-md ">></span>',
-                previous: '<span class=" text-2xl px-2 py-1   rounded-md "><</span>'
+        // Handle form submission
+        $('#addForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'username': $('#addUsername').val(),
+                'password': $('#addPassword').val(),
+                'fullname': $('#addFullname').val(),
+                'posisi': $('#addPosisi').val(),
+                'stasiuntvid': $('#addStasiunTV').val(),
+                'level': $('#addLevel').val(),
+                'userAs': $('#addUserAs').val(),
+                'agencies_commision': $('#addAgenciesCommission').val(),
+                'AgenciesToBeHold': $('#addAgenciesToBeHold').val(),
+                'AgenciesToBeHoldName': $('#addAgenciesToBeHoldName').val()
+            };
+    
+            $.ajax({
+                type: 'POST',
+                url: '/addData',
+                data: formData,
+                success: function(response) {
+                    alert('Data Added');
+                    location.reload();
+                },
+                error: function(xhr) {
+                    console.error(xhr.responseText); // Log any error
+                    alert('Failed to add data');
+                }
+            });
+        });
+    
+        // Initialize DataTable
+        var table = $('#example').DataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            ajax: "/list-user",
+            columns: [
+                { data: 'username', name: 'username', className: 'text-center' },
+                { data: 'fullname', name: 'fullname', className: 'text-center' },
+                { data: 'stasiuntvid', name: 'stasiuntvid', className: 'text-center' },
+                { data: 'posisi', name: 'posisi', className: 'text-center' },
+                { data: 'level', name: 'level', className: 'text-center' },
+                { data: 'userAs', name: 'userAs', className: 'text-center' },
+                { data: 'createdby', name: 'createdby', className: 'text-center' },
+                { data: 'createddate', name: 'createddate', className: 'text-center' },
+                { data: 'updatedby', name: 'updatedby', className: 'text-center' },
+                { data: 'action', name: 'action', orderable: false, searchable: false, className: 'text-center' },
+            ],
+            columnDefs: [
+                {
+                    targets: '_all',
+                    createdCell: function(td,span,th, cellData, rowData, row, col) {
+                        $(span).addClass('block');
+                        $(span).addClass('text-center');
+                    }
+                }
+            ],
+            language: {
+                paginate: {
+                    first: '<span class=" text-2xl px-2 py-1 rounded-md ">First</span>',
+                    last: '<span class="text-2xl px-2 py-1 rounded-md ">Last</span>',
+                    next: '<span class=" text-2xl px-2 py-1 rounded-md ">></span>',
+                    previous: '<span class=" text-2xl px-2 py-1 rounded-md "><</span>'
+                }
+            },
+            initComplete: function () {
+                $('.dt-length select').removeClass('dt-input');
+                var buttonIm = '<a href="/export-excel-csv-file/xlsx" class="bg-green-600 text-white p-3 m-3">Export Excel</a>';
+                var buttonEk = '<a href="/import-excel-csv-file" class="bg-green-600 text-white p-3 m-3">Import CSV</a></h2>';
+                var button = '<button class="bg-gray600 text-white md:mb-3 rounded py-3 px-3 hover:scale-105 hover:-translate-y-1 transform transition duration-300 mr-3" id="addButton">Tambah Data</button>';
+                $('.dt-search').prepend(buttonEk);
+                $('.dt-search').prepend(buttonIm);
+                $('.dt-search').prepend(button);
             }
-        },
-        initComplete: function () {
-            $('.dt-length select').removeClass('dt-input');
-            var buttonIm = '<a href="/export-excel-csv-file/xlsx" class="bg-green-600 text-white p-3 m-3">Export Excel</a>';
-            // var buttonEk = '<a href="/export-excel-csv-file/csv" class="bg-green-600 text-white p-3 m-3">Export CSV</a></h2>';
-            var buttonEk = '<a href="/import-excel-csv-file" class="bg-green-600 text-white p-3 m-3">Import CSV</a></h2>';
-            var button = '<button class="bg-gray600 text-white md:mb-3 rounded py-3 px-3 hover:scale-105 hover:-translate-y-1 transform transition duration-300 mr-3" id="addButton">Tambah Data</button>';
-            $('.dt-search').prepend(buttonEk);
-            $('.dt-search').prepend(buttonIm);
-            $('.dt-search').prepend(button);
-        }
-    });
+        });
     
-
-    var originalData;
+        var originalData;
         $(document).on('click', '.edit', function(){
             var tr = $(this).closest('tr');
             var row = table.row(tr);
@@ -244,7 +250,7 @@ $('#addForm').on('submit', function(e) {
             `);
             $('.edit-input').first().focus();
         });
-
+    
         $(document).on('keydown', '.edit-input', function(e) {
             if (e.key === 'Enter') {
                 var inputs = $('.edit-input');
@@ -256,61 +262,62 @@ $('#addForm').on('submit', function(e) {
                 }
             }
         });
-
-    // Save button functionality
-    $(document).on('click', '.save', function(){
-        var id = $(this).data('id');
-        var username = $('#editNama').val();
-        var fullname = $('#editAlamat').val();
-        var statiunTv = $('#editTv').val();
-        var posisi = $('#editTelepon').val();
-        var Level = $('#editLevel').val();
-        var UserAs = $('#editUserAs').val();
-        $.ajax({
-            type: 'POST',
-            url: '/updateData/' + id,
-            data: {
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-                'username': username,
-                'fullname': fullname,
-                'stasiuntvid': statiunTv,
-                'posisi': posisi,
-                'level': Level,
-                'userAs': UserAs,
-            },
-            success: function(response){
-                alert('Data Updated');
-                location.reload();
-            }
+    
+        // Save button functionality
+        $(document).on('click', '.save', function(){
+            var id = $(this).data('id');
+            var username = $('#editNama').val();
+            var fullname = $('#editAlamat').val();
+            var statiunTv = $('#editTv').val();
+            var posisi = $('#editTelepon').val();
+            var Level = $('#editLevel').val();
+            var UserAs = $('#editUserAs').val();
+            $.ajax({
+                type: 'POST',
+                url: '/updateData/' + id,
+                data: {
+                    '_token': $('meta[name="csrf-token"]').attr('content'),
+                    'username': username,
+                    'fullname': fullname,
+                    'stasiuntvid': statiunTv,
+                    'posisi': posisi,
+                    'level': Level,
+                    'userAs': UserAs,
+                },
+                success: function(response){
+                    alert('Data Updated');
+                    location.reload();
+                }
+            });
         });
-    });
-
-    $(document).on('click', '.cancel', function(){
+    
+        $(document).on('click', '.cancel', function(){
             var tr = $(this).closest('tr');
             var row = table.row(tr);
             row.data(originalData).draw(false); // Restore original data
         });
-
-    // Delete button functionality
-    $(document).on('click', '.show-alert-delete-box', function(event){
-        var id = $(this).data('id');
-        event.preventDefault();
-        swal({
-            title: "Are you sure you want to delete this record?",
-            text: "If you delete this, it will be gone forever.",
-            icon: "warning",
-            type: "warning",
-            buttons: ["Cancel","Yes!"],
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((willDelete) => {
-            if (willDelete) {
-                $('#deleteForm').attr('action', '/delete-data/' + id);
-                $('#deleteForm').submit();
-            }
+    
+        // Delete button functionality
+        $(document).on('click', '.show-alert-delete-box', function(event){
+            var id = $(this).data('id');
+            event.preventDefault();
+            swal({
+                title: "Are you sure you want to delete this record?",
+                text: "If you delete this, it will be gone forever.",
+                icon: "warning",
+                type: "warning",
+                buttons: ["Cancel","Yes!"],
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $('#deleteForm').attr('action', '/delete-data/' + id);
+                    $('#deleteForm').submit();
+                }
+            });
         });
     });
-});
-</script>
+    </script>
+    
 @endpush
