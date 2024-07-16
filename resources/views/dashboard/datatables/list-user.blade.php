@@ -203,12 +203,20 @@ $('#addForm').on('submit', function(e) {
             { data: 'updatedby', name: 'updatedby' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ],
+        language: {
+            paginate: {
+                first: '<span class=" text-2xl px-2 py-1   rounded-md ">First</span>',
+                last: '<span class="text-2xl px-2 py-1 rounded-md ">Last</span>',
+                next: '<span class=" text-2xl px-2 py-1   rounded-md ">></span>',
+                previous: '<span class=" text-2xl px-2 py-1   rounded-md "><</span>'
+            }
+        },
         initComplete: function () {
             $('.dt-length select').removeClass('dt-input');
-            var buttonIm = '<a href="/export-excel-csv-file/xlsx" class="bg-blue-600 text-white p-3 m-3">Export Excel</a>';
+            var buttonIm = '<a href="/export-excel-csv-file/xlsx" class="bg-green-600 text-white p-3 m-3">Export Excel</a>';
             // var buttonEk = '<a href="/export-excel-csv-file/csv" class="bg-green-600 text-white p-3 m-3">Export CSV</a></h2>';
-            var buttonEk = '<a href="/import-excel-csv-file" class="bg-blue-600 text-white p-3 m-3">Import CSV</a></h2>';
-            var button = '<button class="bg-blue-600 text-white md:mb-3 rounded py-3 px-3 hover:scale-105 hover:-translate-y-1 transform transition duration-300 mr-3" id="addButton">Tambah Data</button>';
+            var buttonEk = '<a href="/import-excel-csv-file" class="bg-green-600 text-white p-3 m-3">Import CSV</a></h2>';
+            var button = '<button class="bg-gray600 text-white md:mb-3 rounded py-3 px-3 hover:scale-105 hover:-translate-y-1 transform transition duration-300 mr-3" id="addButton">Tambah Data</button>';
             $('.dt-search').prepend(buttonEk);
             $('.dt-search').prepend(buttonIm);
             $('.dt-search').prepend(button);
