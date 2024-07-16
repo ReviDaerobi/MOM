@@ -15,12 +15,12 @@
     <ul class="mt-4 flex-grow">
       <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Base</p>
       <li class="mb-1 group">
-        <a href="/list-flagrate" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" id="sidebar-dropLeft-toggle">
+        <a href="/list-flagrate" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" id="sidebar-dropLeft-toggle-1">
           <i class="fad fa-chart-pie text-xs mr-2"></i>                
           <span>Parameter</span>
           <i class="fa-solid fa-arrow-right ml-auto group-[.selected]:rotate-90"></i>
         </a>
-        <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropLeft">
+        <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropLeft-1">
           <li class="mb-3">
             <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300 sidebar-link" data-title="Parameter" href="/list-flagrate">
               <i class="fa-solid text-sm mr-2 fa-money-bill"></i>
@@ -30,12 +30,12 @@
         </ul>
       </li>
       <li class="mb-1 group">
-        <a href="#" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" id="sidebar-dropLeft-toggle">
+        <a href="#" class="flex items-center py-2 px-4 hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300" id="sidebar-dropLeft-toggle-2">
           <i class="fad fa-shopping-cart text-xs mr-2"></i>
           <span>Master</span>
           <i class="fa-solid fa-arrow-right ml-auto group-[.selected]:rotate-90"></i>
         </a>
-        <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropLeft">
+        <ul class="pl-7 mt-2 hidden group-[.selected]:block" id="sidebar-dropLeft-2">
           <li class="mb-3">
             <a class="text-gray-600 py-2 px-2 ml-2 text-sm flex items-center hover:text-gray-600 hover:bg-gray-200 rounded transition-all duration-300 sidebar-link" data-title="Master" href="/list-user">
               <i class="fa-solid fa-user text-xs mr-2"></i>
@@ -116,11 +116,29 @@
 
 @push('scripts')
 <script>
- document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     var btn = document.getElementById('sliderBtn');
     var sideBar = document.getElementById('sideBar');
     var listIcon = document.getElementById('list-icon');
     var mainContent = document.getElementById('mainContent');
+
+    // Restore the state of the sidebar and dropdowns from session storage
+    if (sessionStorage.getItem('sidebarOpen') === 'true') {
+        sideBar.classList.remove('hidden');
+        sideBar.classList.add('flex', 'animate__slideInLeft');
+        listIcon.classList.remove('fa-list-ul');
+        listIcon.classList.add('fa-xmark');
+    }
+
+    // Restore the state of dropdowns
+    document.querySelectorAll('[id^="sidebar-dropLeft-toggle"]').forEach(function(item) {
+        var dropdownId = item.id;
+        if (sessionStorage.getItem(dropdownId) === 'true') {
+            var parent = item.closest('.group');
+            parent.classList.add('selected');
+            item.nextElementSibling.classList.add('block');
+        }
+    });
 
     // Toggle sidebar
     btn.addEventListener('click', function() {
@@ -130,6 +148,7 @@
             sideBar.classList.remove('animate__slideOutLeft');
             listIcon.classList.remove('fa-list-ul');
             listIcon.classList.add('fa-xmark');
+            sessionStorage.setItem('sidebarOpen', 'true');
         } else {
             sideBar.classList.remove('animate__slideInLeft');
             sideBar.classList.add('animate__slideOutLeft');
@@ -140,23 +159,28 @@
                     sideBar.classList.remove('flex');
                     listIcon.classList.remove('fa-xmark');
                     listIcon.classList.add('fa-list-ul');
+                    sessionStorage.setItem('sidebarOpen', 'false');
                 }
             }, { once: true });
         }
     });
 
     // DropLeft toggle inside sidebar
-    document.querySelectorAll('#sidebar-dropLeft-toggle').forEach(function(item) {
+    document.querySelectorAll('[id^="sidebar-dropLeft-toggle"]').forEach(function(item) {
         item.addEventListener('click', function(e) {
             e.preventDefault();
             var parent = item.closest('.group');
+            var dropdownId = item.id;
             if (parent.classList.contains('selected')) {
                 parent.classList.remove('selected');
+                sessionStorage.setItem(dropdownId, 'false');
             } else {
                 document.querySelectorAll('#sidebar-dropLeft-toggle').forEach(function(i) {
                     i.closest('.group').classList.remove('selected');
+                    sessionStorage.setItem(i.id, 'false');
                 });
                 parent.classList.add('selected');
+                sessionStorage.setItem(dropdownId, 'true');
             }
         });
     });
@@ -183,6 +207,7 @@
             sideBar.classList.add('flex', 'animate__slideInLeft');
             listIcon.classList.remove('fa-list-ul');
             listIcon.classList.add('fa-xmark');
+            sessionStorage.setItem('sidebarOpen', 'true');
         });
     });
 });
