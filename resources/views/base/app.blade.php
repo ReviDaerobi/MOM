@@ -15,6 +15,28 @@
 <link rel="stylesheet" href="/src/css/loader.css">
 <style>
 
+.hidden-columns td:nth-child(6),
+.hidden-columns td:nth-child(7),
+.hidden-columns td:nth-child(8),
+.hidden-columns th:nth-child(6),
+.hidden-columns th:nth-child(7),
+.hidden-columns th:nth-child(8) {
+    display: none;
+}
+
+.editable-row {
+    display: table-row;
+}
+
+.editable-row .non-editable {
+    display: none;
+}
+
+.table-header th, .table-header td {
+    width: 100px;
+    /* Adjust width as needed */
+}
+
 thead tr th span {
   display: block;
   text-align: center;

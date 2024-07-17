@@ -31,6 +31,9 @@ class DashboardController extends Controller
     // list user
     public function indexListUser(Request $request) {
 
+
+        $datas = List_User::all()->unique('stasiuntvid');
+
         if ($request->ajax()) {
             $data = List_User::select('*');
             return DataTables::of($data)
@@ -42,7 +45,7 @@ class DashboardController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('dashboard.datatables.list-user');
+        return view('dashboard.datatables.list-user',compact('datas'));
     }
 
     public function delete($id) {

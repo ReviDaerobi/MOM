@@ -122,30 +122,23 @@
                                              <input type="text" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="addAgenciesToBeHoldName" name="agencies_to_be_hold_name">
                                          </div>
                                      </div>
-                                     <button type="submit" class="w-full mt-4 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">Tambah</button>
+                                     <button type="submit" class="w-full mt-4 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:col-start-2 sm:text-sm">Tambah</button>
                                  </form>
                              </div>
                          </div>
                      </div>
                  </div>
-                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                     <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
-                         Close
-                     </button>
-                 </div>
              </div>
          </div>
      </div>
  </div>
- <!-- End Modal -->
- 
-
-
 @endsection
 
 @push('scripts-datatable')
 <script type="text/javascript">
     $(document).ready(function() {
+
+
         // Open modal on button click
         $(document).on('click', '#addButton', function(){
             document.querySelector('[x-data]').__x.$data.open = true;
@@ -194,7 +187,7 @@
                 { data: 'username', name: 'username', className: 'text-center' },
                 { data: 'fullname', name: 'fullname', className: 'text-center' },
                 { data: 'stasiuntvid', name: 'stasiuntvid', className: 'text-center' },
-                { data: 'posisi', name: 'posisi', className: 'text-center' },
+                { data: 'posisi', name: 'posisi', className: 'text-center hidden-columns' },
                 { data: 'level', name: 'level', className: 'text-center' },
                 { data: 'userAs', name: 'userAs', className: 'text-center' },
                 { data: 'createdby', name: 'createdby', className: 'text-center' },
@@ -202,6 +195,7 @@
                 { data: 'updatedby', name: 'updatedby', className: 'text-center' },
                 { data: 'action', name: 'action', orderable: false, searchable: false, className: 'text-center' },
             ],
+            
             columnDefs: [
                 {
                     targets: '_all',
@@ -233,22 +227,60 @@
         var originalData;
         $(document).on('click', '.edit', function(){
             var tr = $(this).closest('tr');
+            var th = $(this).closest('th');
             var row = table.row(tr);
             var data = row.data();
             originalData = {...data}; // Store original data
+
+            th.addClass('hidden-columns');
+
             tr.html(`
                 <td><input type="text" id="editNama" value="${data.username}" class="edit-input"></td>
                 <td><input type="text" id="editAlamat" value="${data.fullname}" class="edit-input"></td>
-                <td><input type="text" id="editTv" value="${data.stasiuntvid}" class="edit-input"></td>
-                <td><input type="text" id="editTelepon" value="${data.posisi}" class="edit-input"></td>
-                <td><input type="text" id="editLevel" value="${data.level}" class="edit-input"></td>
-                <td><input type="text" id="editUserAs" value="${data.userAs}" class="edit-input"></td>
+                <td>
+                     <select id="editTv" class="select2-single edit-input form-control w-full">
+                        @foreach($datas as $data)
+                            <option value="{{ $data->stasiuntvid }}">{{ $data->stasiuntvid }}</option>
+                        @endforeach
+                    </select>
+                </td>
+                <td>
+                     <select  id="editTelepon" class="select2-single edit-input form-control w-full">
+                      
+                            <option value="Admin">Admin</option>
+                            <option value="Agencies">Agencies</option>
+                            <option value="Client">Client</option>
+                     
+                    </select>
+                </td>
+                <td>
+                     <select id="editLevel" class="select2-single edit-input form-control w-full">
+                      
+                            <option value="Admin">Admin</option>
+                            <option value="Agencies">Agencies</option>
+                            <option value="Client">Client</option>
+                     
+                    </select>
+                </td>
+                <td>
+                     <select  id="editUserAs" class="select2-single edit-input form-control w-full">
+                      
+                             <option value="Admin">Admin</option>
+                            <option value="Agencies">Agencies</option>
+                            <option value="Client">Client</option>
+                     
+                    </select>
+                </td>
+              
+               
                 <td>
                     <button class="save py-4 px-12 rounded bg-successColor text-white text-xl" data-id="${data.id}">Save</button>
                     <button class="cancel py-4 px-12 rounded bg-red-600 text-white text-xl">Cancel</button>
                 </td>
             `);
             $('.edit-input').first().focus();
+
+            $('.select2-single').select2();
         });
     
         $(document).on('keydown', '.edit-input', function(e) {
