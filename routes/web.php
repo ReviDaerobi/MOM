@@ -43,6 +43,8 @@ Route::get('/list-user', [DashboardController::class,'indexListUser'])->name('li
 Route::post('/delete-data/{id}', [DashboardController::class,'delete']);
 Route::post('/updateData/{id}', [DashboardController::class, 'updateData']);
 Route::post('/addData', [DashboardController::class, 'addData']);
+Route::get('/edit-user/{id}', [DashboardController::class, 'editViewUser']);
+Route::post('/edit-user-submit/{id}', [DashboardController::class, 'ediDatatUser'])->name('user.update');
 
 // list-materi
 Route::get('/list-materi', [DashboardController::class,'indexListMateri'])->name('materi');

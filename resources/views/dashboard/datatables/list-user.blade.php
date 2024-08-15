@@ -162,6 +162,7 @@
                 'AgenciesToBeHoldName': $('#addAgenciesToBeHoldName').val()
             };
     
+<<<<<<< Updated upstream
             $.ajax({
                 type: 'POST',
                 url: '/addData',
@@ -348,6 +349,85 @@
                     $('#deleteForm').submit();
                 }
             });
+=======
+
+    // var originalData;
+    //     $(document).on('click', '.edit', function(){
+    //         var tr = $(this).closest('tr');
+    //         var row = table.row(tr);
+    //         var data = row.data();
+    //         originalData = {...data}; // Store original data
+    //         tr.html(`
+    //             <td><input type="text" id="editNama" value="${data.username}" class="edit-input"></td>
+    //             <td><input type="text" id="editAlamat" value="${data.fullname}" class="edit-input"></td>
+    //             <td><input type="text" id="editTelepon" value="${data.posisi}" class="edit-input"></td>
+    //             <td>
+    //                 <button class="save py-4 px-12 rounded bg-successColor text-white text-xl" data-id="${data.id}">Save</button>
+    //                 <button class="cancel py-4 px-12 rounded bg-red-600 text-white text-xl">Cancel</button>
+    //             </td>
+    //         `);
+    //         $('.edit-input').first().focus();
+    //     });
+
+    //     $(document).on('keydown', '.edit-input', function(e) {
+    //         if (e.key === 'Enter') {
+    //             var inputs = $('.edit-input');
+    //             var idx = inputs.index(this);
+    //             if (idx === inputs.length - 1) {
+    //                 inputs[idx].blur();
+    //             } else {
+    //                 inputs[idx + 1].focus();
+    //             }
+    //         }
+    //     });
+
+    // // Save button functionality
+    // $(document).on('click', '.save', function(){
+    //     var id = $(this).data('id');
+    //     var username = $('#editNama').val();
+    //     var fullname = $('#editAlamat').val();
+    //     var posisi = $('#editTelepon').val();
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/updateData/' + id,
+    //         data: {
+    //             '_token': $('meta[name="csrf-token"]').attr('content'),
+    //             'username': username,
+    //             'fullname': fullname,
+    //             'posisi': posisi
+    //         },
+    //         success: function(response){
+    //             alert('Data Updated');
+    //             location.reload();
+    //         }
+    //     });
+    // });
+
+    // $(document).on('click', '.cancel', function(){
+    //         var tr = $(this).closest('tr');
+    //         var row = table.row(tr);
+    //         row.data(originalData).draw(false); // Restore original data
+    //     });
+
+    // Delete button functionality
+    $(document).on('click', '.show-alert-delete-box', function(event){
+        var id = $(this).data('id');
+        event.preventDefault();
+        swal({
+            title: "Are you sure you want to delete this record?",
+            text: "If you delete this, it will be gone forever.",
+            icon: "warning",
+            type: "warning",
+            buttons: ["Cancel","Yes!"],
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((willDelete) => {
+            if (willDelete) {
+                $('#deleteForm').attr('action', '/delete-data/' + id);
+                $('#deleteForm').submit();
+            }
+>>>>>>> Stashed changes
         });
     });
     </script>

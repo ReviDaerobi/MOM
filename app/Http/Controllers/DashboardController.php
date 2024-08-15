@@ -39,7 +39,11 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
+<<<<<<< Updated upstream
                     $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-2.5 px-5 rounded text-white bg-gray600 hover:bg-gray-800" data-id="'.$row->id.'">Edit</button>';
+=======
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-user/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+>>>>>>> Stashed changes
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -53,6 +57,12 @@ class DashboardController extends Controller
         $post->delete();
 
         return redirect('/list-user');
+    }
+
+    public function editViewUser($id) {
+        $user = List_User::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.user_edit', compact('user','availableAgencies'));
     }
 
     public function addData(Request $request)
