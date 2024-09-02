@@ -39,11 +39,9 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-<<<<<<< Updated upstream
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-2.5 px-5 rounded text-white bg-gray600 hover:bg-gray-800" data-id="'.$row->id.'">Edit</button>';
-=======
+
                     $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-user/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
->>>>>>> Stashed changes
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -109,7 +107,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-5 px-3 rounded text-white bg-blue-600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-materi/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -117,6 +116,12 @@ class DashboardController extends Controller
         }
 
         return view('dashboard.datatables.list-materi');
+    }
+
+    public function editViewMateri($id) {
+        $user = List_Materi::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.materi_edit', compact('user','availableAgencies'));
     }
 
     public function deleteMateri($id) {
@@ -163,7 +168,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-holding/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -171,6 +177,12 @@ class DashboardController extends Controller
         }
 
         return view('dashboard.datatables.list-holding');
+    }
+
+    public function editViewHolding($id) {
+        $user = List_Holding::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.holding_edit', compact('user','availableAgencies'));
     }
 
     public function deleteHolding($id) {
@@ -209,7 +221,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-agency/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -218,6 +231,12 @@ class DashboardController extends Controller
 
         return view('dashboard.datatables.list-agency');
 
+    }
+
+    public function editViewAgency($id) {
+        $user = List_Agency::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.agency_edit', compact('user','availableAgencies'));
     }
 
     public function deleteAgency($id) {
@@ -256,7 +275,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-advertiser/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -265,6 +285,12 @@ class DashboardController extends Controller
 
         return view('dashboard.datatables.list-agency');
 
+    }
+
+    public function editViewAdvertiser($id) {
+        $user = List_Advetiser::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.advertiser_edit', compact('user','availableAgencies'));
     }
 
     public function deleteAdvertiser($id) {
@@ -303,7 +329,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-brand/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -312,6 +339,12 @@ class DashboardController extends Controller
 
         return view('dashboard.datatables.list-brand');
 
+    }
+
+    public function editViewBrand($id) {
+        $user = List_Brand::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.brand_edit', compact('user','availableAgencies'));
     }
 
     public function deleteBrand($id) {
@@ -350,7 +383,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-flagrate/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -359,6 +393,12 @@ class DashboardController extends Controller
 
         return view('dashboard.datatables.list-flagrate');
 
+    }
+
+    public function editViewFlagrate($id) {
+        $user = List_FlagRate::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.flagrate_edit', compact('user','availableAgencies'));
     }
 
     public function deleteFlagrate($id) {
@@ -397,7 +437,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-spottype/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -406,6 +447,12 @@ class DashboardController extends Controller
 
         return view('dashboard.datatables.list-spottype');
 
+    }
+
+    public function editViewSpottype($id) {
+        $user = List_SpotType::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.spottype_edit', compact('user','availableAgencies'));
     }
 
     public function deleteSpottype($id) {
@@ -444,7 +491,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-channel/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -453,6 +501,12 @@ class DashboardController extends Controller
 
         return view('dashboard.datatables.channel');
 
+    }
+
+    public function editViewChannel($id) {
+        $user = List_Channel::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.channel_edit', compact('user','availableAgencies'));
     }
 
     public function deleteChannel($id) {
@@ -491,7 +545,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-category/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -500,6 +555,12 @@ class DashboardController extends Controller
 
         return view('dashboard.datatables.category');
 
+    }
+
+    public function editViewCategory($id) {
+        $user = List_Category::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.category_edit', compact('user','availableAgencies'));
     }
 
     public function deleteCategory($id) {
@@ -537,7 +598,8 @@ class DashboardController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <button class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</button>';
+                    $actionBtn = '<button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 show-alert-delete-box" data-id="'.$row->id.'">Delete</button> <a href="/edit-settings/'.$row->id.'" class="edit py-3 px-3 rounded text-white bg-gray600" data-id="'.$row->id.'">Edit</a>';
+
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -546,6 +608,12 @@ class DashboardController extends Controller
 
         return view('dashboard.datatables.settings');
 
+    }
+
+    public function editViewSettings($id) {
+        $user = List_Settings::find($id);
+        $availableAgencies  = List_Agency::all();
+        return view('dashboard.data-update.settings_edit', compact('user','availableAgencies'));
     }
 
     public function deleteSettings($id) {
